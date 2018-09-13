@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour {
     BoardManager bM;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         tokens = new List<Token>(2);
 
     }

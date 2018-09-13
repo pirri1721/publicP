@@ -36,12 +36,16 @@ public class BoardManager : MonoBehaviour {
             slots[i].index = i;
         }
         //Add key slot rules
+        //add safes
+        //add exitSlotsIndex
+
 
 
         //Players
         for(int i = 0; i < this.transform.childCount; i++)
         {
             players[i] = transform.GetChild(i).GetComponent<Player>();
+            players[i].bM = this;
         }
         currentPlayer = players[0];
         currentPlayerIndex = 0;
@@ -51,7 +55,7 @@ public class BoardManager : MonoBehaviour {
         token.bM = this;
 	}
 
-    internal void TokenFree(Token token)
+    internal void FreeToken(Token token)
     {
         slots[currentPlayer.exitSlotIndex].tokens.Add(token);
         token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 1f);
@@ -188,6 +192,7 @@ public class BoardManager : MonoBehaviour {
         if(repeatedTurns < 3)
         {
             //se mató - lastTokenUsed --> Jail
+            lastTokenUsed.ReturnJail();
 
             killedToken = true;
             repeatTurn = false;

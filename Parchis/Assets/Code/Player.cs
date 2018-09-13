@@ -9,16 +9,30 @@ public class Player : MonoBehaviour {
     public int exitSlotIndex = 0;
 
 
-    public BoardManager bm;
+    public BoardManager bM;
     public Player ally;
 
     public Token lastTokenUsed;
     // Use this for initialization
     void Start () {
 
-        //TEST
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            tokens[i] = transform.GetChild(i).GetComponent<Token>();
+            tokens[i].bM = bM;
+            tokens[i].player = this;
+        }
+
+        //Free first token
+        tokens[0].UpdateCurrentSlot(exitSlotIndex);
+        tokens[0].free = true;
+        //bM.FreeToken(tokens[0]);
+        tokens[0].FreeToken();
         
-        tokens[0] = GameObject.Find("Token").gameObject.GetComponent<Token>();
+        
+        //TEST
+
+        //tokens[0] = GameObject.Find("Token").gameObject.GetComponent<Token>();
 	}
 	
 	// Update is called once per frame
@@ -45,7 +59,7 @@ public class Player : MonoBehaviour {
         {
             if (!tokens[i].free)
             {
-                bm.TokenFree(tokens[i]);
+                bM.FreeToken(tokens[i]);
                 tokens[i].UpdateCurrentSlot(exitSlotIndex);
                 tokens[i].free = true;
                 return true;
@@ -57,7 +71,7 @@ public class Player : MonoBehaviour {
 
     public void JailToken(int tokenIndex)
     {
-
+        tokens[tokenIndex].ReturnJail();
     }
 
     public void SelectToken()

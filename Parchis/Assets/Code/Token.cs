@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Token : MonoBehaviour, IPointerClickHandler {
 
@@ -14,16 +15,20 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     public BoardManager bM;
 
+    private Vector3 jailPosition; 
+
     bool enabledMove = false;
     int nextMove = 0;
 
 	// Use this for initialization
 	void Start () {
 
+        jailPosition = transform.position;
+        currentSlot = 0;
 
         //Test
-        nextMove = 4;
-        enabledMove = true;
+        //nextMove = 4;
+        //enabledMove = true;
 	}
 	
 	// Update is called once per frame
@@ -70,7 +75,12 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         nextMove = 0;
     }
 
-
+    internal void ReturnJail()
+    {
+        transform.DOMove(jailPosition, 2f);
+        free = false;
+        currentSlot = 0;
+    }
 
     internal bool IsAlly(Token token)
     {
@@ -99,5 +109,14 @@ public class Token : MonoBehaviour, IPointerClickHandler {
     public void UpdateCurrentSlot(int destinationSlot)
     {
         currentSlot = destinationSlot;
+    }
+
+    
+    public void FreeToken()
+    {
+        currentSlot = player.exitSlotIndex;
+        free = true;
+        transform.DOMove(bM.slots[player.exitSlotIndex].transform.position, 1);
+        bM.slots[player.exitSlotIndex].tokens.Add(this);
     }
 }
