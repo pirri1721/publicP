@@ -37,7 +37,27 @@ public class BoardManager : MonoBehaviour {
         }
         //Add key slot rules
         //add safes
-        //add exitSlotsIndex
+
+        for(int i=0; i<slotsN; i++)
+        {
+            if(i == 4 ||
+                i == 11 ||
+                i == 16 ||
+                i == 21 ||
+                i == 28 ||
+                i == 33 ||
+                i == 38 ||
+                i == 45 ||
+                i == 50 ||
+                i == 55 ||
+                i == 62 ||
+                i == 67 )
+            {
+                slots[i].safe = true;
+            }
+        }
+
+        //add exitSlotsIndex - currently InEditor managed
 
 
 
@@ -170,6 +190,9 @@ public class BoardManager : MonoBehaviour {
         if (diceNumb == 6)
         {
             RepeatTurn();
+
+            //If all tokens free --> diceNumb = 7
+            if (currentPlayer.AllTokensFree()) diceNumb = 7;
         }
 
         if (killedToken)

@@ -74,6 +74,16 @@ public class Player : MonoBehaviour {
         tokens[tokenIndex].ReturnJail();
     }
 
+    public bool AllTokensFree()
+    {
+        for(int i =0; i < tokens.Length; i++)
+        {
+            if (!tokens[i].free) return false;
+        }
+
+        return true;
+    }
+
     public void SelectToken()
     {
         
