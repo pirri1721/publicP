@@ -16,17 +16,17 @@ public class Slot : MonoBehaviour {
 
     //public Token[] tokens = new Token[2];
     public List<Token> tokens;
-    BoardManager bM;
+    public BoardManager bM;
 
 	// Use this for initialization
 	void Awake () {
         tokens = new List<Token>(2);
-
+        //Debug.Log(tokens.Count);
     }
 
     public bool IsAvaible()
     {
-        if (tokens[0] != null && tokens[1] != null)
+        if (tokens.Count == 2)
         {
             return false;
         }
@@ -35,10 +35,16 @@ public class Slot : MonoBehaviour {
 
     public bool ThisSlotAvaible(int followMove)
     {
-        if(tokens[0] != null && tokens[1] != null)
+        if(tokens.Count == 2)
         {
             return false;
         }
+
+        /*
+        if(tokens[0] != null && tokens[1] != null)
+        {
+            return false;
+        }*/
 
         if(followMove > 0)
         {
@@ -64,6 +70,18 @@ public class Slot : MonoBehaviour {
             return specialIndex;
         }
         else return index + 1;
+    }
+
+    public void AddingToken(Token token)
+    {
+        tokens.Add(token);
+        //add check
+    }
+
+    public void RemovingToken(Token token)
+    {
+        tokens.Remove(token);
+        //add check
     }
 
 }

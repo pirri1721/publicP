@@ -16,6 +16,7 @@ public class BoardManager : MonoBehaviour {
     public Slot[] slots;
 
 
+
     private bool diceUsed = false;
     private bool repeatTurn = false;
     private int repeatedTurns = 0;
@@ -34,6 +35,7 @@ public class BoardManager : MonoBehaviour {
         {
             slots[i] = SlotsGO.transform.GetChild(i).gameObject.AddComponent<Slot>();
             slots[i].index = i;
+            slots[i].bM = this;
         }
         //Add key slot rules
         //add safes
@@ -71,20 +73,22 @@ public class BoardManager : MonoBehaviour {
         currentPlayerIndex = 0;
 
         //TEST
+        /*
         Token token = GameObject.Find("Token").gameObject.GetComponent<Token>();
         token.bM = this;
+        */
 	}
 
     internal void FreeToken(Token token)
     {
-        slots[currentPlayer.exitSlotIndex].tokens.Add(token);
+        slots[currentPlayer.exitSlotIndex].AddingToken(token);
         token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 1f);
     }
 
     public bool CheckMove(int slot, int diceNumb)
     {
 
-        if (!slots[slot].ThisSlotAvaible(diceNumb))
+        if (!slots[slot+1].ThisSlotAvaible(diceNumb))
         {
             return false;
         }
@@ -100,17 +104,24 @@ public class BoardManager : MonoBehaviour {
 
         float time = 1.0f / amount;
         Sequence moveSequence = DOTween.Sequence();
-        
-        for(int i = 0; i < amount; i++)
+
+        for (int i = 0; i < amount; i++)
         {
             //TWEEN
+            /*
+            if (i == 0)
+            {
+                moveSequence.Append(token.gameObject.transform.DOMove(slots[index].transform.position, time));
+            }
+            */
+
+            index = slots[index].NextIndex(token);
+
             moveSequence.Append(token.gameObject.transform.DOMove(slots[index].transform.position, time));
             
-            index = slots[index].NextIndex(token);
-            
         }
-        token.currentSlot = index;
-        slots[index].tokens.Add(token);
+        //token.currentSlot = index;
+        slots[index].AddingToken(token);
         moveSequence.Play<Sequence>();
         currentPlayer.lastTokenUsed = token;
         lastTokenUsed = token;
@@ -151,7 +162,7 @@ public class BoardManager : MonoBehaviour {
                     //make eaten move
 
                     token.currentSlot = index;
-                    currentSlot.tokens.Add(token);
+                    currentSlot.AddingToken(token);
                     currentPlayer.CheckMoves(20);
                     return true;
                 }
@@ -165,24 +176,50 @@ public class BoardManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (!diceUsed)
+            {
+                ThrowDice();
+            }
+        }
+
+        //test
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (!diceUsed)
+            {
+                ThrowDice(5);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            if (!diceUsed)
+            {
+                ThrowDice(6);
+            }
+        }
+    }
 
     public void ThrowDice()
     {
         diceUsed = true;
         repeatTurn = false;
 
-        int diceNumb = UnityEngine.Random.Range(1, 6);
+        int diceNumb = UnityEngine.Random.Range(1, 7);
 
-        if(diceNumb == 5)
+        Debug.Log(diceNumb);
+        if (diceNumb == 5)
         {
             if (slots[currentPlayer.exitSlotIndex].IsAvaible())
             {
+                //TODO
                 //CheckForEnemies
                 if (currentPlayer.CheckJail())
                 {
-                    //slots[currentPlayer.exitSlotIndex].tokens.Add()
+                    
+                    //slots[currentPlayer.exitSlotIndex].AddingToken()
                     NextTurn();
                 }
             }
@@ -204,7 +241,51 @@ public class BoardManager : MonoBehaviour {
         {
             currentPlayer.CheckMoves(diceNumb);
         }
+
         
+    }
+
+    //testingDice
+    public void ThrowDice(int diceNumb)
+    {
+        diceUsed = true;
+        repeatTurn = false;
+
+        //int diceNumb = UnityEngine.Random.Range(1, 7);
+
+        Debug.Log(diceNumb);
+        if (diceNumb == 5)
+        {
+            if (slots[currentPlayer.exitSlotIndex].IsAvaible())
+            {
+                //TODO
+                //CheckForEnemies
+                if (currentPlayer.CheckJail())
+                {
+
+                    //slots[currentPlayer.exitSlotIndex].AddingToken()
+                    NextTurn();
+                }
+            }
+        }
+        if (diceNumb == 6)
+        {
+            RepeatTurn();
+
+            //If all tokens free --> diceNumb = 7
+            if (currentPlayer.AllTokensFree()) diceNumb = 7;
+        }
+
+        if (killedToken)
+        {
+            killedToken = false;
+            NextTurn();
+        }
+        else
+        {
+            currentPlayer.CheckMoves(diceNumb);
+        }
+
 
     }
 
@@ -212,7 +293,7 @@ public class BoardManager : MonoBehaviour {
     {
         
         repeatedTurns++;
-        if(repeatedTurns < 3)
+        if(repeatedTurns > 3)
         {
             //se mató - lastTokenUsed --> Jail
             lastTokenUsed.ReturnJail();

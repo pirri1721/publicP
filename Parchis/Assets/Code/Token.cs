@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class Token : MonoBehaviour, IPointerClickHandler {
 
-    public bool free;
+    public bool free = false;
     public int currentSlot;
     public Color color;
     public Player player;
@@ -24,7 +24,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 	void Start () {
 
         jailPosition = transform.position;
-        currentSlot = 0;
+        //currentSlot = 0;
 
         //Test
         //nextMove = 4;
@@ -67,11 +67,12 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     public void Move()
     {
-        bM.MoveToken(this, nextMove);
-
-
-        currentSlot = currentSlot + nextMove;
+        //currentSlot = currentSlot + nextMove;
         enabledMove = false;
+
+        bM.MoveToken(this, nextMove);
+        //currentSlot = currentSlot + nextMove;
+
         nextMove = 0;
     }
 
@@ -117,6 +118,6 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         currentSlot = player.exitSlotIndex;
         free = true;
         transform.DOMove(bM.slots[player.exitSlotIndex].transform.position, 1);
-        bM.slots[player.exitSlotIndex].tokens.Add(this);
+        bM.slots[player.exitSlotIndex].AddingToken(this);
     }
 }
