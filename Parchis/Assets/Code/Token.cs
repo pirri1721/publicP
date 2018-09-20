@@ -17,7 +17,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     private Vector3 jailPosition; 
 
-    bool enabledMove = false;
+    public bool enabledMove = false;
     int nextMove = 0;
 
 	// Use this for initialization
@@ -67,8 +67,10 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     public void Move()
     {
+        player.DisableMoves();
+
         //currentSlot = currentSlot + nextMove;
-        enabledMove = false;
+        
 
         bM.MoveToken(this, nextMove);
         //currentSlot = currentSlot + nextMove;

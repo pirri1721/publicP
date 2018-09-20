@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,6 +70,15 @@ public class Player : MonoBehaviour {
         return false;
     }
 
+    internal void DisableMoves()
+    {
+        for (int i=0; i < tokens.Length; i++)
+        {
+            tokens[i].enabledMove = false;
+        }
+        
+    }
+
     public void JailToken(int tokenIndex)
     {
         tokens[tokenIndex].ReturnJail();
@@ -87,5 +97,17 @@ public class Player : MonoBehaviour {
     public void SelectToken()
     {
         
+    }
+
+    public bool AllTokensJailed()
+    {
+        for(int i = 0; i < tokens.Length; i++)
+        {
+            if (tokens[i].free)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

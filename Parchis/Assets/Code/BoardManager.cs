@@ -82,7 +82,7 @@ public class BoardManager : MonoBehaviour {
     internal void FreeToken(Token token)
     {
         slots[currentPlayer.exitSlotIndex].AddingToken(token);
-        token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 1f);
+        token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 0.5f);
     }
 
     public bool CheckMove(int slot, int diceNumb)
@@ -99,7 +99,7 @@ public class BoardManager : MonoBehaviour {
     public void MoveToken(Token token, int amount)
     {
         int index = token.currentSlot;
-        slots[index].tokens.Remove(token);
+        slots[index].RemovingToken(token);
 
 
         float time = 1.0f / amount;
@@ -157,7 +157,7 @@ public class BoardManager : MonoBehaviour {
                     //DeadAnimation
                     //remove token eated
                     currentToken.player.JailToken(currentToken.tokenIndex);
-                    currentSlot.tokens.Remove(currentToken);
+                    currentSlot.RemovingToken(currentToken);
 
                     //make eaten move
 
@@ -268,24 +268,34 @@ public class BoardManager : MonoBehaviour {
                 }
             }
         }
-        if (diceNumb == 6)
-        {
-            RepeatTurn();
-
-            //If all tokens free --> diceNumb = 7
-            if (currentPlayer.AllTokensFree()) diceNumb = 7;
-        }
-
-        if (killedToken)
-        {
-            killedToken = false;
-            NextTurn();
-        }
         else
         {
-            currentPlayer.CheckMoves(diceNumb);
-        }
+            if(currentPlayer.AllTokensJailed())
+            {
+                NextTurn();
+            }
+            else
+            {
+                if (diceNumb == 6)
+                {
+                    RepeatTurn();
 
+                    //If all tokens free --> diceNumb = 7
+                    if (currentPlayer.AllTokensFree()) diceNumb = 7;
+                }
+
+                if (killedToken)
+                {
+                    killedToken = false;
+                    NextTurn();
+                }
+                else
+                {
+                    currentPlayer.CheckMoves(diceNumb);
+                }
+            }
+
+        }
 
     }
 
@@ -293,7 +303,7 @@ public class BoardManager : MonoBehaviour {
     {
         
         repeatedTurns++;
-        if(repeatedTurns > 3)
+        if(repeatedTurns > 2)
         {
             //se mató - lastTokenUsed --> Jail
             lastTokenUsed.ReturnJail();

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Slot : MonoBehaviour {
 
@@ -76,12 +77,57 @@ public class Slot : MonoBehaviour {
     {
         tokens.Add(token);
         //add check
+        if(tokens.Count == 2)
+        {
+            StartCoroutine(AdjustTokens());
+        }
     }
 
     public void RemovingToken(Token token)
     {
+
+        if(tokens.Count == 2)
+        {
+            if(tokens[0] == token)
+            {
+                tokens[1].transform.DOMoveX(this.transform.position.x,0.5f);
+            }
+            else
+            {
+                tokens[1].transform.DOMoveX(this.transform.position.x, 0.5f);
+            }
+        }
         tokens.Remove(token);
-        //add check
+        
+    }
+
+    public IEnumerator AdjustTokens()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Transform firstToken = tokens[0].transform;
+        Transform secondToken = tokens[1].transform;
+
+        firstToken.SetParent(this.transform);
+        secondToken.SetParent(this.transform);
+        /*
+        firstToken.rotation = this.transform.rotation;
+        secondToken.rotation = this.transform.rotation;
+        yield return new WaitForEndOfFrame();
+        */
+        if(this.transform.rotation.y >  0)
+        {
+            firstToken.DOLocalMoveZ(this.transform.position.z - 0.2f, 0.5f);
+            secondToken.DOLocalMoveZ(this.transform.position.z + 0.2f, 0.5f);
+        }
+        else
+        {
+            firstToken.DOLocalMoveX(this.transform.position.x - 0.2f, 0.5f);
+            secondToken.DOLocalMoveX(this.transform.position.x + 0.2f, 0.5f);
+        }
+
+        firstToken.SetParent(null);
+        secondToken.SetParent(null);
     }
 
 }
