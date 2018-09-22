@@ -3478,7 +3478,7 @@ MeshCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606813271}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2ff7173a55f3c1547b93c8902e1341d5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6579,19 +6579,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.3719995
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92823297
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_RootOrder
@@ -6611,7 +6611,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -43.678
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90e3c35a67a58a64ba27120e7c99a25a, type: 3}
       propertyPath: m_LocalScale.x
