@@ -15,7 +15,7 @@ public class BoardManager : MonoBehaviour {
     private GameObject SlotsGO;
     public Slot[] slots;
 
-
+    private Dice dice;
 
     private bool diceUsed = false;
     private bool repeatTurn = false;
@@ -25,7 +25,11 @@ public class BoardManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+
+        //Dice
+        dice = GameObject.Find("Dice").gameObject.GetComponent<Dice>();
+        dice.bM = this;
+
         //Slots
         SlotsGO = GameObject.Find("Slots").gameObject;
         int slotsN = SlotsGO.transform.childCount;
@@ -181,7 +185,8 @@ public class BoardManager : MonoBehaviour {
         {
             if (!diceUsed)
             {
-                ThrowDice();
+                //ThrowDice();
+
             }
         }
 
@@ -202,50 +207,6 @@ public class BoardManager : MonoBehaviour {
         }
     }
 
-    public void ThrowDice()
-    {
-        diceUsed = true;
-        repeatTurn = false;
-
-        int diceNumb = UnityEngine.Random.Range(1, 7);
-
-        Debug.Log(diceNumb);
-        if (diceNumb == 5)
-        {
-            if (slots[currentPlayer.exitSlotIndex].IsAvaible())
-            {
-                //TODO
-                //CheckForEnemies
-                if (currentPlayer.CheckJail())
-                {
-                    
-                    //slots[currentPlayer.exitSlotIndex].AddingToken()
-                    NextTurn();
-                }
-            }
-        }
-        if (diceNumb == 6)
-        {
-            RepeatTurn();
-
-            //If all tokens free --> diceNumb = 7
-            if (currentPlayer.AllTokensFree()) diceNumb = 7;
-        }
-
-        if (killedToken)
-        {
-            killedToken = false;
-            NextTurn();
-        }
-        else
-        {
-            currentPlayer.CheckMoves(diceNumb);
-        }
-
-        
-    }
-
-    //testingDice
     public void ThrowDice(int diceNumb)
     {
         diceUsed = true;
@@ -334,6 +295,25 @@ public class BoardManager : MonoBehaviour {
 
         //UI animation -- currentPlayer turn
         diceUsed = false;
+
+        //BAD BAD BAD
+        //dice.ResetDice();
+        EnableLaunchButton();
+    }
+
+    public void EnableLaunchButton()
+    {
+        dice.ResetDice();
+        //TODO
+        //enableButton
+    }
+
+    public void LaunchButtonAction()
+    {
+        Debug.Log("LaunchButtonAction");
+        dice.Launch();
+        //TODO
+        //disableButton
     }
 
     public void EndGame()
