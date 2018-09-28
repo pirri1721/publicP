@@ -30,9 +30,15 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         //nextMove = 4;
         //enabledMove = true;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    internal void Tint()
+    {
+        color = player.color;
+        this.gameObject.GetComponent<MeshRenderer>().material.color = player.color;
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown(KeyCode.A))
         {
 
@@ -41,17 +47,18 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         }
 	}
 
-    public void CheckMove(int diceNumb)
+    public bool TokenCheckMove(int diceNumb)
     {
 
-        if (!bM.CheckMove(currentSlot, diceNumb))
-        {
-            
-        }
-        else
+        if (bM.BMCheckMove(currentSlot, diceNumb))
         {
             //CreateShadow(thisToken)
             EnableMove(diceNumb);
+            return true;
+        }
+        else
+        {
+            return false;
         }
        
     }

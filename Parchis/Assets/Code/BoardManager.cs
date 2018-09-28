@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class BoardManager : MonoBehaviour {
 
+    private BoardUI ui;
+
     private Player[] players = new Player[4];
     //HookeableRules
 
@@ -25,6 +27,8 @@ public class BoardManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        ui = GameObject.Find("Canvas").gameObject.GetComponent<BoardUI>();
 
         //Dice
         dice = GameObject.Find("Dice").gameObject.GetComponent<Dice>();
@@ -63,15 +67,39 @@ public class BoardManager : MonoBehaviour {
             }
         }
 
+        //Color slots rules
+        slots[16].specialMove = true;
+        slots[16].specialIndex = 76;
+        slots[16].specialColor.Add(Color.blue);
+
+        slots[33].specialMove = true;
+        slots[33].specialIndex = 84;
+        slots[33].specialColor.Add(Color.red);
+
+        slots[50].specialMove = true;
+        slots[50].specialIndex = 92;
+        slots[50].specialColor.Add(Color.green);
+
+        slots[67].specialMove = true;
+        slots[67].specialIndex = 0;
+        slots[67].specialColor.Add(Color.blue);
+        slots[67].specialColor.Add(Color.red);
+        slots[67].specialColor.Add(Color.green);
+
+
+
         //add exitSlotsIndex - currently InEditor managed
 
 
-
         //Players
-        for(int i = 0; i < this.transform.childCount; i++)
+        for (int i = 0; i < this.transform.childCount; i++)
         {
             players[i] = transform.GetChild(i).GetComponent<Player>();
             players[i].bM = this;
+            if (i == 0) players[i].color = Color.yellow;
+            if (i == 1) players[i].color = Color.blue;
+            if (i == 2) players[i].color = Color.red;
+            if (i == 3) players[i].color = Color.green;
         }
         currentPlayer = players[0];
         currentPlayerIndex = 0;
@@ -89,15 +117,15 @@ public class BoardManager : MonoBehaviour {
         token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 0.5f);
     }
 
-    public bool CheckMove(int slot, int diceNumb)
+    public bool BMCheckMove(int slot, int diceNumb)
     {
 
-        if (!slots[slot+1].ThisSlotAvaible(diceNumb))
+        if (slots[slot+1].ThisSlotAvaible(diceNumb))
         {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public void MoveToken(Token token, int amount)
@@ -166,8 +194,11 @@ public class BoardManager : MonoBehaviour {
                     //make eaten move
 
                     token.currentSlot = index;
-                    currentSlot.AddingToken(token);
-                    currentPlayer.CheckMoves(20);
+                    //currentSlot.AddingToken(token);
+                    if (!currentPlayer.CheckMoves(20))
+                    {
+                        return false;
+                    }
                     return true;
                 }
             }
@@ -215,18 +246,15 @@ public class BoardManager : MonoBehaviour {
         //int diceNumb = UnityEngine.Random.Range(1, 7);
 
         Debug.Log(diceNumb);
-        if (diceNumb == 5)
+        if (diceNumb == 5 && slots[currentPlayer.exitSlotIndex].IsAvaible())
         {
-            if (slots[currentPlayer.exitSlotIndex].IsAvaible())
+            //TODO
+            //CheckForEnemies
+            if (currentPlayer.CheckJail())
             {
-                //TODO
-                //CheckForEnemies
-                if (currentPlayer.CheckJail())
-                {
 
-                    //slots[currentPlayer.exitSlotIndex].AddingToken()
-                    NextTurn();
-                }
+                //slots[currentPlayer.exitSlotIndex].AddingToken()
+                NextTurn();
             }
         }
         else
@@ -252,7 +280,15 @@ public class BoardManager : MonoBehaviour {
                 }
                 else
                 {
-                    currentPlayer.CheckMoves(diceNumb);
+                    if (currentPlayer.CheckMoves(diceNumb))
+                    {
+
+                    }
+                    else
+                    {
+                        NextTurn();
+                    }
+
                 }
             }
 
@@ -306,6 +342,7 @@ public class BoardManager : MonoBehaviour {
         dice.ResetDice();
         //TODO
         //enableButton
+        ui.EnableGR();
     }
 
     public void LaunchButtonAction()
@@ -314,6 +351,7 @@ public class BoardManager : MonoBehaviour {
         dice.Launch();
         //TODO
         //disableButton
+        ui.DisableGR();
     }
 
     public void EndGame()

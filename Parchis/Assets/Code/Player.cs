@@ -22,6 +22,8 @@ public class Player : MonoBehaviour {
             tokens[i] = transform.GetChild(i).GetComponent<Token>();
             tokens[i].bM = bM;
             tokens[i].player = this;
+            tokens[i].Tint();
+            tokens[i].tokenIndex = i;
         }
 
         //Free first token
@@ -41,16 +43,28 @@ public class Player : MonoBehaviour {
 
     }
 
-    
-
-    public void CheckMoves(int diceNumb)
+    public bool CheckMoves(int diceNumb)
     {
+        bool movePosibility = false;
+
         for (int i = 0; i < tokens.Length; i++)
         {
             if (tokens[i].free)
             {
-                tokens[i].CheckMove(diceNumb);
+                if (tokens[i].TokenCheckMove(diceNumb))
+                {
+                    movePosibility = true;
+                }
             }
+        }
+
+        if (movePosibility)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

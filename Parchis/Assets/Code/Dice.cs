@@ -93,6 +93,10 @@ public class Dice : MonoBehaviour {
             Debug.Log("6");
             bM.ThrowDice(6);
         }
+        else
+        {
+            Launch();
+        }
     }
 
     public void Launch ()
@@ -108,7 +112,7 @@ public class Dice : MonoBehaviour {
         rgdB.AddForce(Vector3.up * randomF);
 
         float randomT = UnityEngine.Random.Range(0.1f, 0.9f) * 10f;
-        rgdB.AddTorque(Vector3.right * randomF);
+        rgdB.AddTorque(Vector3.right * randomT);
 
         yield return new WaitForSeconds(0.25f);
         diceThrowed = true;
