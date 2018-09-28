@@ -58,7 +58,7 @@ public class Slot : MonoBehaviour {
             }
             else*/
             //bM.CheckMove(index,followMove - 1);
-            bM.slots[index+1].ThisSlotAvaible(followMove-1);
+            return bM.slots[index+1].ThisSlotAvaible(followMove-1);
         }
         
         //pre-rules

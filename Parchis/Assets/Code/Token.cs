@@ -82,7 +82,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         bM.MoveToken(this, nextMove);
         //currentSlot = currentSlot + nextMove;
 
-        nextMove = 0;
+        //nextMove = 0;
     }
 
     internal void ReturnJail()

@@ -199,7 +199,11 @@ public class BoardManager : MonoBehaviour {
                     {
                         return false;
                     }
-                    return true;
+                    else
+                    {
+                        return true;
+                    }
+                    
                 }
             }
 
