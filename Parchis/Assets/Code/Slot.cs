@@ -12,6 +12,8 @@ public class Slot : MonoBehaviour {
     public List<Color> specialColor;
     public bool specialMove;
     public int specialIndex;
+
+    public bool roadEnd;
     //pre-rules
     //rules
 
@@ -102,11 +104,12 @@ public class Slot : MonoBehaviour {
             }
             else
             {
-                tokens[1].transform.DOMoveX(this.transform.position.x, 0.5f);
+                tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
             }
         }
         tokens.Remove(token);
-        
+        //tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
+
     }
 
     public IEnumerator AdjustTokens()

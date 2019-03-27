@@ -338,6 +338,8 @@ public class BoardManager : MonoBehaviour {
 
         //BAD BAD BAD
         //dice.ResetDice();
+
+        ui.UpdateTurnText(currentPlayer.name);
         EnableLaunchButton();
     }
 
