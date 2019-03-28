@@ -39,6 +39,11 @@ public class Slot : MonoBehaviour {
 
     public bool ThisSlotAvaible(int followMove)
     {
+        if(roadEnd && followMove == 0)
+        {
+            return true;
+        }
+
         if(tokens.Count == 2)
         {
             return false;

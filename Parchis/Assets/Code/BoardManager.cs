@@ -86,6 +86,11 @@ public class BoardManager : MonoBehaviour {
         slots[67].specialColor.Add(Color.red);
         slots[67].specialColor.Add(Color.green);
 
+        slots[75].roadEnd = true;
+        slots[83].roadEnd = true;
+        slots[91].roadEnd = true;
+        slots[99].roadEnd = true;
+
 
 
         //add exitSlotsIndex - currently InEditor managed
