@@ -4810,7 +4810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763780144}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AxeParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7258,8 +7258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b87a5d251acc714aacbab54d068e439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  boneToAttach: {fileID: 0}
+  weapon: {fileID: 1662247661}
+  boneToAttach: {fileID: 1553373355}
 --- !u!1 &1141549810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 39db47e17923745429ad8a3bf61d8607,
@@ -7278,7 +7278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b87a5d251acc714aacbab54d068e439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 763780143}
   boneToAttach: {fileID: 0}
 --- !u!1 &1145329025
 GameObject:
@@ -10655,6 +10655,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545332418}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1553373355 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400146, guid: 6bd9d04f0fed38d4abb47a460ac324f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 894058974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1553536704
 GameObject:
   m_ObjectHideFlags: 0
@@ -11483,7 +11489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662247662}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BowParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
