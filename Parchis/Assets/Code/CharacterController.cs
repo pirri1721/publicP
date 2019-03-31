@@ -7,6 +7,9 @@ public class CharacterController : MonoBehaviour
     public GameObject weapon;
 
     public Transform boneToAttach;
+
+    Animator anim;
+
     Transform weaponOriginalBone;
     Vector3 weaponOriginalLocalposition;
     Quaternion weaponOriginalRotation;
@@ -14,6 +17,8 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+
         weaponOriginalBone = weapon.transform.parent;
 
         weaponOriginalLocalposition = weapon.transform.localPosition;
@@ -31,10 +36,18 @@ public class CharacterController : MonoBehaviour
         weapon.transform.SetParent(weaponOriginalBone);
         weapon.transform.localPosition = weaponOriginalLocalposition;
         weapon.transform.localRotation = weaponOriginalRotation;
+        Debug.Log(gameObject.name);
     }
 
     public void UnRootWeapon()
     {
         weapon.transform.SetParent(boneToAttach);
+        Debug.Log("1");
+    }
+
+    public void EndDraw()
+    {
+        anim.SetTrigger("endDraw");
+        Debug.Log("2");
     }
 }

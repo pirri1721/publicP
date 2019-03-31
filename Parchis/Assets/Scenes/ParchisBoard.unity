@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45007515, g: 0.50012535, b: 0.57547724, a: 1}
+  m_IndirectSpecularColor: {r: 0.45007557, g: 0.5001258, b: 0.5754777, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -355,13 +355,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65373989}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b87a5d251acc714aacbab54d068e439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 506770463}
-  boneToAttach: {fileID: 0}
+  boneToAttach: {fileID: 439484106}
 --- !u!1 &72165709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,6 +2246,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4234e63e76c77cf4d9c9610395bbfa22, type: 3}
+--- !u!4 &281338915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400154, guid: 39db47e17923745429ad8a3bf61d8607,
+    type: 3}
+  m_PrefabInstance: {fileID: 1601970325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281510139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,6 +3124,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62a3e7837d17cf94c8a136a46d33f717, type: 3}
+--- !u!4 &439484106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: 62a3e7837d17cf94c8a136a46d33f717,
+    type: 3}
+  m_PrefabInstance: {fileID: 439484105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &455077923
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,6 +5340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: erika_archer_bow_arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6bd9d04f0fed38d4abb47a460ac324f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 6bd9d04f0fed38d4abb47a460ac324f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.23
@@ -7253,7 +7269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136662284}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b87a5d251acc714aacbab54d068e439, type: 3}
   m_Name: 
@@ -7273,13 +7289,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141549810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b87a5d251acc714aacbab54d068e439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 763780143}
-  boneToAttach: {fileID: 0}
+  boneToAttach: {fileID: 281338915}
 --- !u!1 &1145329025
 GameObject:
   m_ObjectHideFlags: 0
@@ -9111,6 +9127,10 @@ PrefabInstance:
     - target: {fileID: 100066, guid: 72a7a746e5f87d44caa95e9db4b9ded4, type: 3}
       propertyPath: m_Name
       value: maria_prop_j_j_ong
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: 72a7a746e5f87d44caa95e9db4b9ded4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 72a7a746e5f87d44caa95e9db4b9ded4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11024,6 +11044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brute
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 39db47e17923745429ad8a3bf61d8607, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 100076, guid: 39db47e17923745429ad8a3bf61d8607, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -11082,7 +11106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 39db47e17923745429ad8a3bf61d8607, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 13700002, guid: 39db47e17923745429ad8a3bf61d8607, type: 3}
       propertyPath: m_Materials.Array.size

@@ -96,6 +96,11 @@ public class Player : MonoBehaviour {
     public void JailToken(int tokenIndex)
     {
         tokens[tokenIndex].ReturnJail();
+
+        if (AllTokensJailed())
+        {
+            //charcontroller.sit()
+        }
     }
 
     public bool AllTokensFree()
