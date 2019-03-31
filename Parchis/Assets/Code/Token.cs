@@ -19,9 +19,10 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     public bool enabledMove = false;
     int nextMove = 0;
+    public bool end = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         jailPosition = transform.position;
         //currentSlot = 0;
@@ -53,6 +54,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         if (bM.BMCheckMove(currentSlot, diceNumb))
         {
             //CreateShadow(thisToken)
+            //if (CheckEats(token, currentSlot+diceNumb))
             EnableMove(diceNumb);
             return true;
         }

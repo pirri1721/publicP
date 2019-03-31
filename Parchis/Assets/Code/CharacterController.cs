@@ -31,23 +31,35 @@ public class CharacterController : MonoBehaviour
         
     }
 
+    public void Turn()
+    {
+        anim.SetTrigger("turn");
+    }
+
+    public void Sit()
+    {
+        anim.SetTrigger("sit");
+    }
+
+    public void WakeUp()
+    {
+        anim.SetTrigger("wakeUp");
+    }
+
     public void RootWeapon()
     {
         weapon.transform.SetParent(weaponOriginalBone);
         weapon.transform.localPosition = weaponOriginalLocalposition;
         weapon.transform.localRotation = weaponOriginalRotation;
-        Debug.Log(gameObject.name);
     }
 
     public void UnRootWeapon()
     {
         weapon.transform.SetParent(boneToAttach);
-        Debug.Log("1");
     }
 
     public void EndDraw()
     {
         anim.SetTrigger("endDraw");
-        Debug.Log("2");
     }
 }

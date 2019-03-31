@@ -45,10 +45,18 @@ public class Dice : MonoBehaviour {
         Debug.DrawRay(transform.position, transform.right, Color.red);//1
         */
 
+        /*
         if(rgdB.velocity * 10 == Vector3.zero && diceThrowed)
         {
             GetNumb();
         }
+        */
+    }
+
+    public void GetNumb(int numb)
+    {
+        diceThrowed = false;
+        bM.ThrowDice(numb);
     }
 
     private void GetNumb()
@@ -116,6 +124,9 @@ public class Dice : MonoBehaviour {
 
         yield return new WaitForSeconds(0.25f);
         diceThrowed = true;
+
+        yield return new WaitUntil(() => rgdB.velocity.magnitude < 0.01f);
+        GetNumb();
     }
 
     public void ResetDice()

@@ -30,6 +30,9 @@ public class Slot : MonoBehaviour {
 
     public bool IsAvaible()
     {
+        //TODO
+        //CheckForEnemies
+
         if (tokens.Count == 2)
         {
             return false;
@@ -39,9 +42,9 @@ public class Slot : MonoBehaviour {
 
     public bool ThisSlotAvaible(int followMove)
     {
-        if(roadEnd && followMove == 0)
+        if(roadEnd && followMove > 0)
         {
-            return true;
+            return false;
         }
 
         if(tokens.Count == 2)

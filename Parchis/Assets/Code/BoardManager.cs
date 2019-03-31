@@ -125,8 +125,9 @@ public class BoardManager : MonoBehaviour {
     public bool BMCheckMove(int slot, int diceNumb)
     {
 
-        if (slots[slot+1].ThisSlotAvaible(diceNumb))
+        if (slots[slot+1].ThisSlotAvaible(diceNumb-1))
         {
+
             return true;
         }
 
@@ -145,20 +146,25 @@ public class BoardManager : MonoBehaviour {
         for (int i = 0; i < amount; i++)
         {
             //TWEEN
-            /*
-            if (i == 0)
-            {
-                moveSequence.Append(token.gameObject.transform.DOMove(slots[index].transform.position, time));
-            }
-            */
 
             index = slots[index].NextIndex(token);
 
             moveSequence.Append(token.gameObject.transform.DOMove(slots[index].transform.position, time));
             
         }
-        //token.currentSlot = index;
+
         slots[index].AddingToken(token);
+        if (slots[index].roadEnd)
+        {
+            token.end = true;
+            if (currentPlayer.AllTokensEnd())
+            {
+                //TODO
+                //WIN
+                Debug.Log("win");
+            }
+        }
+
         moveSequence.Play<Sequence>();
         currentPlayer.lastTokenUsed = token;
         lastTokenUsed = token;
@@ -188,18 +194,18 @@ public class BoardManager : MonoBehaviour {
         {
             if (currentSlot.tokens[0] != null)
             {
-                Token currentToken = currentSlot.tokens[0];
-                if (!token.IsAlly(currentToken))
+                Token currentInSlotToken = currentSlot.tokens[0];
+                if (!token.IsAlly(currentInSlotToken))
                 {
                     //DeadAnimation
                     //remove token eated
-                    currentToken.player.JailToken(currentToken.tokenIndex);
-                    currentSlot.RemovingToken(currentToken);
+                    currentInSlotToken.player.JailToken(currentInSlotToken.tokenIndex);
+                    currentSlot.RemovingToken(currentInSlotToken);
 
                     //make eaten move
 
                     token.currentSlot = index;
-                    //currentSlot.AddingToken(token);
+
                     if (!currentPlayer.CheckMoves(20))
                     {
                         return false;
@@ -208,7 +214,11 @@ public class BoardManager : MonoBehaviour {
                     {
                         return true;
                     }
-                    
+
+                }
+                else
+                {
+                    //isAlly
                 }
             }
 
@@ -231,18 +241,52 @@ public class BoardManager : MonoBehaviour {
         }
 
         //test
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (!diceUsed)
+            {
+                dice.GetNumb(1);
+                ui.DisableGR();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (!diceUsed)
+            {
+                dice.GetNumb(2);
+                ui.DisableGR();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (!diceUsed)
+            {
+                dice.GetNumb(3);
+                ui.DisableGR();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (!diceUsed)
+            {
+                dice.GetNumb(4);
+                ui.DisableGR();
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             if (!diceUsed)
             {
-                ThrowDice(5);
+                dice.GetNumb(5);
+                ui.DisableGR();
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             if (!diceUsed)
             {
-                ThrowDice(6);
+                dice.GetNumb(6);
+                ui.DisableGR();
             }
         }
     }
@@ -255,15 +299,18 @@ public class BoardManager : MonoBehaviour {
         //int diceNumb = UnityEngine.Random.Range(1, 7);
 
         Debug.Log(diceNumb);
-        if (diceNumb == 5 && slots[currentPlayer.exitSlotIndex].IsAvaible())
+        if (diceNumb == 5 && slots[currentPlayer.exitSlotIndex].IsAvaible() && !currentPlayer.AllTokensFree())
         {
-            //TODO
-            //CheckForEnemies
+            
             if (currentPlayer.CheckJail())
             {
 
                 //slots[currentPlayer.exitSlotIndex].AddingToken()
                 NextTurn();
+            }
+            else
+            {
+                Debug.LogError("look here");
             }
         }
         else
@@ -328,6 +375,7 @@ public class BoardManager : MonoBehaviour {
     {
         if (!repeatTurn)
         {
+            currentPlayer.charController.Turn();
             currentPlayerIndex++;
             if (currentPlayerIndex == 4)
             {
@@ -335,14 +383,12 @@ public class BoardManager : MonoBehaviour {
             }
 
             currentPlayer = players[currentPlayerIndex];
+            currentPlayer.charController.Turn();
             repeatedTurns = 0;
         }
 
         //UI animation -- currentPlayer turn
         diceUsed = false;
-
-        //BAD BAD BAD
-        //dice.ResetDice();
 
         ui.UpdateTurnText(currentPlayer.name);
         EnableLaunchButton();

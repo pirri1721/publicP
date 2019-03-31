@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     public Player ally;
 
     public Token lastTokenUsed;
+    public CharacterController charController;
+
     // Use this for initialization
     void Start () {
 
@@ -31,12 +33,15 @@ public class Player : MonoBehaviour {
         tokens[0].free = true;
         //bM.FreeToken(tokens[0]);
         tokens[0].FreeToken();
-        
-        
+
+
+        //charController.gameObject.transform.LookAt(bM.transform);
+
+        charController.gameObject.transform.rotation = Quaternion.LookRotation(bM.transform.position-transform.position,transform.up);
         //TEST
 
         //tokens[0] = GameObject.Find("Token").gameObject.GetComponent<Token>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,7 +54,7 @@ public class Player : MonoBehaviour {
 
         for (int i = 0; i < tokens.Length; i++)
         {
-            if (tokens[i].free)
+            if (tokens[i].free && !tokens[i].end)
             {
                 if (tokens[i].TokenCheckMove(diceNumb))
                 {
@@ -58,26 +63,34 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (movePosibility)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return movePosibility;
     }
 
     public bool CheckJail()
     {
-        for (int i = 0; i < tokens.Length; i++)
+        if (AllTokensJailed())
         {
-            if (!tokens[i].free)
+            charController.WakeUp();
+
+            int i = 0;
+            bM.FreeToken(tokens[i]);
+            tokens[i].UpdateCurrentSlot(exitSlotIndex);
+            tokens[i].free = true;
+
+            return true;
+        }
+        else
+        {
+            for (int i = 0; i < tokens.Length; i++)
             {
-                bM.FreeToken(tokens[i]);
-                tokens[i].UpdateCurrentSlot(exitSlotIndex);
-                tokens[i].free = true;
-                return true;
+                if (!tokens[i].free)
+                {
+                    bM.FreeToken(tokens[i]);
+                    tokens[i].UpdateCurrentSlot(exitSlotIndex);
+                    tokens[i].free = true;
+
+                    return true;
+                }
             }
         }
 
@@ -99,7 +112,7 @@ public class Player : MonoBehaviour {
 
         if (AllTokensJailed())
         {
-            //charcontroller.sit()
+            charController.Sit();
         }
     }
 
@@ -113,11 +126,6 @@ public class Player : MonoBehaviour {
         return true;
     }
 
-    public void SelectToken()
-    {
-        
-    }
-
     public bool AllTokensJailed()
     {
         for(int i = 0; i < tokens.Length; i++)
@@ -129,4 +137,24 @@ public class Player : MonoBehaviour {
         }
         return true;
     }
+
+    public bool AllTokensEnd()
+    {
+        for (int i = 0; i < tokens.Length; i++)
+        {
+            if (!tokens[i].end)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void GetCharacter(CharacterController character)
+    {
+        charController = character;
+        charController.gameObject.transform.position = transform.position;
+        charController.gameObject.transform.rotation = Quaternion.LookRotation(bM.transform.position);
+    }
+
 }
