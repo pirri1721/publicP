@@ -219,6 +219,10 @@ public class BoardManager : MonoBehaviour {
                 else
                 {
                     //isAlly
+                    Player ally = currentInSlotToken.player;
+
+                    ally.AbbBarrier(currentInSlotToken, token);
+                    currentPlayer.AbbBarrier(token, currentInSlotToken);
                 }
             }
 
@@ -336,15 +340,38 @@ public class BoardManager : MonoBehaviour {
                 }
                 else
                 {
-                    if (currentPlayer.CheckMoves(diceNumb))
+                    bool openableBarrier = false;
+
+                    if (currentPlayer.barriers.Count > 0)
+                    {
+                        //TODO
+
+                        for(int i=0;i< currentPlayer.barriers.Count; i++)
+                        {
+                            Token playerToken = currentPlayer.GetOwnTokenFromWall(i);
+
+                            if (playerToken.TokenCheckMove(diceNumb) && !openableBarrier)
+                            {
+                                openableBarrier = true;
+                            }
+                        }
+                    }
+
+                    if (openableBarrier)
                     {
 
                     }
                     else
                     {
-                        NextTurn();
-                    }
+                        if (currentPlayer.CheckMoves(diceNumb))
+                        {
 
+                        }
+                        else
+                        {
+                            NextTurn();
+                        }
+                    }
                 }
             }
 
@@ -359,7 +386,9 @@ public class BoardManager : MonoBehaviour {
         if(repeatedTurns > 2)
         {
             //se mató - lastTokenUsed --> Jail
-            lastTokenUsed.ReturnJail();
+            //lastTokenUsed.ReturnJail();
+
+            currentPlayer.JailToken(lastTokenUsed.tokenIndex);
 
             killedToken = true;
             repeatTurn = false;
@@ -390,7 +419,7 @@ public class BoardManager : MonoBehaviour {
         //UI animation -- currentPlayer turn
         diceUsed = false;
 
-        ui.UpdateTurnText(currentPlayer.name);
+        ui.UpdateTurnText(currentPlayer.name, currentPlayer.color);
         EnableLaunchButton();
     }
 

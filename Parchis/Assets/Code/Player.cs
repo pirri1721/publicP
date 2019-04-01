@@ -15,6 +15,43 @@ public class Player : MonoBehaviour {
 
     public Token lastTokenUsed;
     public CharacterController charController;
+    internal List<Barrier> barriers;
+
+    public struct Barrier
+    {
+        public Token token1;
+        public Token token2;
+    }
+
+    public Barrier BarrierConstructor(Token tokenA, Token tokenB)
+    {
+        Barrier barrier = new Barrier();
+        barrier.token1 = tokenA;
+        barrier.token2 = tokenB;
+        return barrier;
+    }
+
+    public void AbbBarrier(Token tokenA, Token tokenB)
+    {
+        barriers.Add(BarrierConstructor(tokenA, tokenB));
+    }
+
+    public Token GetOwnTokenFromWall(int indexBarrierQuery)
+    {
+        Token ownToken;
+        Barrier barrierQuery = barriers[indexBarrierQuery];
+
+        if (barrierQuery.token1.player == this)
+        {
+            ownToken = barrierQuery.token1;
+        }
+        else
+        {
+            ownToken = barrierQuery.token2;
+        }
+
+        return ownToken;
+    }
 
     // Use this for initialization
     void Start () {

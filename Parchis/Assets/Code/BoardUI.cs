@@ -17,9 +17,10 @@ public class BoardUI : MonoBehaviour {
         GR = this.gameObject.GetComponent<GraphicRaycaster>();
 	}
 
-    public void UpdateTurnText(string name)
+    public void UpdateTurnText(string name, Color color)
     {
         turnText.text = "It's " + name + "'s turn";
+        turnText.transform.parent.GetComponent<Image>().color = color;
     }
 
     public void DisableGR()
