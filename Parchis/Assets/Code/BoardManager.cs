@@ -87,6 +87,11 @@ public class BoardManager : MonoBehaviour {
         slots[67].specialColor.Add(Color.red);
         slots[67].specialColor.Add(Color.green);
 
+        for(int i = 68; i < 100; i++)
+        {
+            slots[i].stairTile = true;
+        }
+
         slots[75].roadEnd = true;
         slots[83].roadEnd = true;
         slots[91].roadEnd = true;
@@ -181,6 +186,10 @@ public class BoardManager : MonoBehaviour {
                 //WIN
                 Debug.Log("win");
             }
+        }
+        if (slots[index].stairTile)
+        {
+            token.stair = true;
         }
 
         moveSequence.Play<Sequence>();
@@ -433,7 +442,10 @@ public class BoardManager : MonoBehaviour {
             //se mató - lastTokenUsed --> Jail
             //lastTokenUsed.ReturnJail();
 
-            currentPlayer.JailToken(lastTokenUsed.tokenIndex);
+            if (!lastTokenUsed.stair)
+            {
+                currentPlayer.JailToken(lastTokenUsed.tokenIndex);
+            }
 
             killedToken = true;
             repeatTurn = false;

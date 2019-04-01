@@ -20,9 +20,10 @@ public class Slot : MonoBehaviour {
     //public Token[] tokens = new Token[2];
     public List<Token> tokens;
     public BoardManager bM;
+    public bool stairTile;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
         tokens = new List<Token>(2);
         specialColor = new List<Color>();
         //Debug.Log(tokens.Count);

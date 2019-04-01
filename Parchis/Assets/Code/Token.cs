@@ -22,6 +22,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
     public bool end = false;
 
     public Outline outline;
+    public bool stair;
 
     // Use this for initialization
     void Start () {
