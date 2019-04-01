@@ -122,9 +122,9 @@ public class Slot : MonoBehaviour {
                     if (token.player.barriers[i].token1 == token)
                     {
                         Token otherToken = token.player.barriers[i].token2;
-                        otherToken.player.RemoveBarrier(otherToken);
 
                         token.player.RemoveBarrier(i);
+                        otherToken.player.RemoveBarrier(otherToken);
                     }
                 }
             }

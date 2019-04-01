@@ -21,10 +21,14 @@ public class Token : MonoBehaviour, IPointerClickHandler {
     int nextMove = 0;
     public bool end = false;
 
+    public Outline outline;
+
     // Use this for initialization
     void Start () {
 
         jailPosition = transform.position;
+        outline = GetComponent<Outline>();
+        outline.enabled = false;
         //currentSlot = 0;
 
         //Test
@@ -68,6 +72,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
     public void EnableMove(int diceNumb)
     {
         //Add shader
+        outline.enabled = true;
         //addpointer
         enabledMove = true;
         nextMove = diceNumb;

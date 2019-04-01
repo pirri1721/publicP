@@ -216,8 +216,18 @@ public class BoardManager : MonoBehaviour {
         if (currentSlot.safe)
         {
             //ADD Bariers
+            if (currentSlot.tokens[0] != null)
+            {
+                Token currentInSlotToken = currentSlot.tokens[0];
+                
+                //otherPlayer
+                Player otherPlayer = currentInSlotToken.player;
 
-            return false;
+                otherPlayer.AddBarrier(currentInSlotToken, token);
+                currentPlayer.AddBarrier(token, currentInSlotToken);
+            }
+
+            //return false;
         }
         else
         {
@@ -253,10 +263,11 @@ public class BoardManager : MonoBehaviour {
                 }
             }
 
-            token.currentSlot = index;
-            return false;
+            //token.currentSlot = index;
+            //return false;
         }
-        
+
+        return false;
     }
 
     // Update is called once per frame

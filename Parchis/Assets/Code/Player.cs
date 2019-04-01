@@ -40,10 +40,12 @@ public class Player : MonoBehaviour {
     {
         try 
         {
-            if(barriers.Count-1 >= indexBarrier)
+            barriers.Remove(barriers[indexBarrier]);
+            /*
+            if (barriers.Count-1 >= indexBarrier)
             {
                 barriers.Remove(barriers[indexBarrier]);
-            }
+            }*/
         }
         catch (ArgumentOutOfRangeException)
         {
@@ -169,6 +171,7 @@ public class Player : MonoBehaviour {
         for (int i=0; i < tokens.Length; i++)
         {
             tokens[i].enabledMove = false;
+            tokens[i].outline.enabled = false;
         }
         
     }
