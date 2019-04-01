@@ -114,6 +114,20 @@ public class Slot : MonoBehaviour {
             {
                 tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
             }
+
+            if (token.player.barriers.Count > 0)
+            {
+                for (int i = 0; i < token.player.barriers.Count; i++)
+                {
+                    if (token.player.barriers[i].token1 == token)
+                    {
+                        Token otherToken = token.player.barriers[i].token2;
+                        otherToken.player.RemoveBarrier(otherToken);
+
+                        token.player.RemoveBarrier(i);
+                    }
+                }
+            }
         }
         tokens.Remove(token);
         //tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
@@ -126,6 +140,7 @@ public class Slot : MonoBehaviour {
 
         if(tokens.Count == 2)
         {
+
             Transform firstToken = tokens[0].transform;
             Transform secondToken = tokens[1].transform;
 
@@ -149,6 +164,10 @@ public class Slot : MonoBehaviour {
 
             firstToken.SetParent(null);
             secondToken.SetParent(null);
+        }
+        else
+        {
+            Debug.Log("wtf");
         }
     }
 

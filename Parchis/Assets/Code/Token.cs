@@ -32,7 +32,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         //enabledMove = true;
 	}
 
-    internal void Tint()
+    public void Tint()
     {
         color = player.color;
         this.gameObject.GetComponent<MeshRenderer>().material.color = player.color;
@@ -87,14 +87,14 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         //nextMove = 0;
     }
 
-    internal void ReturnJail()
+    public void ReturnJail()
     {
         transform.DOMove(jailPosition, 2f);
         free = false;
         currentSlot = 0;
     }
 
-    internal bool IsAlly(Token token)
+    public bool IsAlly(Token token)
     {
         if(token.player == this.player || token.player == this.player.ally)
         {
@@ -130,5 +130,16 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         free = true;
         transform.DOMove(bM.slots[player.exitSlotIndex].transform.position, 1);
         bM.slots[player.exitSlotIndex].AddingToken(this);
+
+        if(bM.slots[player.exitSlotIndex].tokens.Count == 2)
+        {
+            Token currentInSlotToken = bM.slots[player.exitSlotIndex].tokens[0];
+
+            if (IsAlly(currentInSlotToken))
+            {
+                player.AddBarrier(this, currentInSlotToken);
+                currentInSlotToken.player.AddBarrier(currentInSlotToken, this);
+            }
+        }
     }
 }

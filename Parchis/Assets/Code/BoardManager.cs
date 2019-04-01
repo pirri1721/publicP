@@ -24,6 +24,7 @@ public class BoardManager : MonoBehaviour {
     private int repeatedTurns = 0;
     private bool killedToken = false;
     private Token lastTokenUsed;
+    private bool sixDrop;
 
     // Use this for initialization
     void Start () {
@@ -116,10 +117,11 @@ public class BoardManager : MonoBehaviour {
         */
 	}
 
-    internal void FreeToken(Token token)
+    public void BMFreeToken(Token token)
     {
-        slots[currentPlayer.exitSlotIndex].AddingToken(token);
-        token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 0.5f);
+        token.FreeToken();
+        //slots[currentPlayer.exitSlotIndex].AddingToken(token);
+        //token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 0.5f);
     }
 
     public bool BMCheckMove(int slot, int diceNumb)
@@ -137,6 +139,22 @@ public class BoardManager : MonoBehaviour {
     public void MoveToken(Token token, int amount)
     {
         int index = token.currentSlot;
+        
+        /*
+        if(currentPlayer.barriers.Count > 0)
+        {
+            for(int i = 0; i< currentPlayer.barriers.Count; i++)
+            {
+                if(currentPlayer.barriers[i].token1 == token)
+                {
+                    Token otherToken = currentPlayer.barriers[i].token2;
+                    otherToken.player.RemoveBarrier(otherToken);
+
+                    currentPlayer.RemoveBarrier(i);
+                }
+            }
+        }*/
+
         slots[index].RemovingToken(token);
 
 
@@ -169,14 +187,24 @@ public class BoardManager : MonoBehaviour {
         currentPlayer.lastTokenUsed = token;
         lastTokenUsed = token;
 
-        if (CheckEats(token, index))
+        token.currentSlot = index;
+
+        if (slots[index].tokens.Count > 1)
         {
 
+            if (CheckEats(token, index))
+            {
+
+            }
+            else
+            {
+                NextTurn();
+
+            }
         }
         else
         {
             NextTurn();
-            
         }
         
         
@@ -187,7 +215,8 @@ public class BoardManager : MonoBehaviour {
         Slot currentSlot = slots[index];
         if (currentSlot.safe)
         {
-            token.currentSlot = index;
+            //ADD Bariers
+
             return false;
         }
         else
@@ -204,8 +233,6 @@ public class BoardManager : MonoBehaviour {
 
                     //make eaten move
 
-                    token.currentSlot = index;
-
                     if (!currentPlayer.CheckMoves(20))
                     {
                         return false;
@@ -221,8 +248,8 @@ public class BoardManager : MonoBehaviour {
                     //isAlly
                     Player ally = currentInSlotToken.player;
 
-                    ally.AbbBarrier(currentInSlotToken, token);
-                    currentPlayer.AbbBarrier(token, currentInSlotToken);
+                    ally.AddBarrier(currentInSlotToken, token);
+                    currentPlayer.AddBarrier(token, currentInSlotToken);
                 }
             }
 
@@ -299,6 +326,7 @@ public class BoardManager : MonoBehaviour {
     {
         diceUsed = true;
         repeatTurn = false;
+        sixDrop = false;
 
         //int diceNumb = UnityEngine.Random.Range(1, 7);
 
@@ -327,6 +355,7 @@ public class BoardManager : MonoBehaviour {
             {
                 if (diceNumb == 6)
                 {
+                    sixDrop = true;
                     RepeatTurn();
 
                     //If all tokens free --> diceNumb = 7
@@ -342,19 +371,24 @@ public class BoardManager : MonoBehaviour {
                 {
                     bool openableBarrier = false;
 
-                    if (currentPlayer.barriers.Count > 0)
+                    if (sixDrop)
                     {
-                        //TODO
-
-                        for(int i=0;i< currentPlayer.barriers.Count; i++)
+                        if (currentPlayer.barriers.Count > 0)
                         {
-                            Token playerToken = currentPlayer.GetOwnTokenFromWall(i);
+                            //TODO
 
-                            if (playerToken.TokenCheckMove(diceNumb) && !openableBarrier)
+                            for (int i = 0; i < currentPlayer.barriers.Count; i++)
                             {
-                                openableBarrier = true;
+                                Token playerToken = currentPlayer.GetOwnTokenFromWall(i);
+
+                                if (playerToken.TokenCheckMove(diceNumb) && !openableBarrier)
+                                {
+                                    openableBarrier = true;
+                                }
                             }
                         }
+
+                        sixDrop = false;
                     }
 
                     if (openableBarrier)

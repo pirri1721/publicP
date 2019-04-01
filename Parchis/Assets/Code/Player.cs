@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 
     public Token lastTokenUsed;
     public CharacterController charController;
-    internal List<Barrier> barriers;
+    public List<Barrier> barriers;
 
     public struct Barrier
     {
@@ -31,9 +31,35 @@ public class Player : MonoBehaviour {
         return barrier;
     }
 
-    public void AbbBarrier(Token tokenA, Token tokenB)
+    public void AddBarrier(Token tokenA, Token tokenB)
     {
         barriers.Add(BarrierConstructor(tokenA, tokenB));
+    }
+
+    public void RemoveBarrier(int indexBarrier)
+    {
+        try 
+        {
+            if(barriers.Count-1 >= indexBarrier)
+            {
+                barriers.Remove(barriers[indexBarrier]);
+            }
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Debug.LogError("lol");
+        }
+    }
+
+    public void RemoveBarrier(Token token)
+    {
+        for(int i=0; i< barriers.Count; i++)
+        {
+            if(barriers[i].token1 == token)
+            {
+                barriers.Remove(barriers[i]);
+            }
+        }
     }
 
     public Token GetOwnTokenFromWall(int indexBarrierQuery)
@@ -44,10 +70,12 @@ public class Player : MonoBehaviour {
         if (barrierQuery.token1.player == this)
         {
             ownToken = barrierQuery.token1;
+            Debug.Log("Always in 1");
         }
         else
         {
             ownToken = barrierQuery.token2;
+            Debug.LogError("Not in 1");
         }
 
         return ownToken;
@@ -55,6 +83,8 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        barriers = new List<Barrier>();
 
         for (int i = 0; i < this.transform.childCount; i++)
         {
@@ -110,7 +140,7 @@ public class Player : MonoBehaviour {
             charController.WakeUp();
 
             int i = 0;
-            bM.FreeToken(tokens[i]);
+            bM.BMFreeToken(tokens[i]);
             tokens[i].UpdateCurrentSlot(exitSlotIndex);
             tokens[i].free = true;
 
@@ -122,7 +152,7 @@ public class Player : MonoBehaviour {
             {
                 if (!tokens[i].free)
                 {
-                    bM.FreeToken(tokens[i]);
+                    bM.BMFreeToken(tokens[i]);
                     tokens[i].UpdateCurrentSlot(exitSlotIndex);
                     tokens[i].free = true;
 
@@ -134,7 +164,7 @@ public class Player : MonoBehaviour {
         return false;
     }
 
-    internal void DisableMoves()
+    public void DisableMoves()
     {
         for (int i=0; i < tokens.Length; i++)
         {
