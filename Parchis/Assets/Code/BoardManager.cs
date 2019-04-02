@@ -234,6 +234,8 @@ public class BoardManager : MonoBehaviour {
 
                 otherPlayer.AddBarrier(currentInSlotToken, token);
                 currentPlayer.AddBarrier(token, currentInSlotToken);
+
+                //ADJUST
             }
 
             //return false;
@@ -269,6 +271,8 @@ public class BoardManager : MonoBehaviour {
 
                     ally.AddBarrier(currentInSlotToken, token);
                     currentPlayer.AddBarrier(token, currentInSlotToken);
+
+                    //ADJUST
                 }
             }
 
