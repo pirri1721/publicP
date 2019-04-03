@@ -8,6 +8,9 @@ public class BoardUI : MonoBehaviour {
     public BoardManager bM;
     public Text turnText; //current managed by editor
 
+    public GameObject mainCamera;
+    public GameObject dinamycCamera;
+
     private Canvas canvas;
     private GraphicRaycaster GR;
 
@@ -15,7 +18,9 @@ public class BoardUI : MonoBehaviour {
 	void Start () {
         canvas = this.gameObject.GetComponent<Canvas>();
         GR = this.gameObject.GetComponent<GraphicRaycaster>();
-	}
+
+        dinamycCamera.SetActive(false);
+    }
 
     public void UpdateTurnText(string name, Color color)
     {
@@ -31,6 +36,20 @@ public class BoardUI : MonoBehaviour {
     public void EnableGR()
     {
         GR.enabled = true;
+    }
+
+    public void CameraButton()
+    {
+        if (mainCamera.activeInHierarchy)
+        {
+            mainCamera.SetActive(false);
+            dinamycCamera.SetActive(true);
+        }
+        else
+        {
+            mainCamera.SetActive(true);
+            dinamycCamera.SetActive(false);
+        }
     }
 
     // Update is called once per frame

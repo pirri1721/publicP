@@ -104,32 +104,37 @@ public class Slot : MonoBehaviour {
 
     public void RemovingToken(Token token)
     {
-
-        if(tokens.Count == 2)
+        if (!bM.eat)
         {
-            if(tokens[0] == token)
+            if (tokens.Count == 2)
             {
-                tokens[1].transform.DOMoveX(this.transform.position.x,0.5f);
-            }
-            else
-            {
-                tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
-            }
-
-            if (token.player.barriers.Count > 0)
-            {
-                for (int i = 0; i < token.player.barriers.Count; i++)
+                if (tokens[0] == token)
                 {
-                    if (token.player.barriers[i].token1 == token)
-                    {
-                        Token otherToken = token.player.barriers[i].token2;
+                    tokens[1].transform.DOMoveX(this.transform.position.x, 0.5f);
+                }
+                else
+                {
+                    tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
+                }
 
-                        token.player.RemoveBarrier(i);
-                        otherToken.player.RemoveBarrier(otherToken);
+                if (token.player.barriers.Count > 0)
+                {
+                    for (int i = 0; i < token.player.barriers.Count; i++)
+                    {
+                        if (token.player.barriers[i].token1 == token)
+                        {
+                            Token otherToken = token.player.barriers[i].token2;
+
+                            token.player.RemoveBarrier(i);
+                            otherToken.player.RemoveBarrier(otherToken);
+                        }
                     }
                 }
             }
+
+
         }
+        bM.eat = false;
         tokens.Remove(token);
         //tokens[0].transform.DOMoveX(this.transform.position.x, 0.5f);
 
@@ -139,7 +144,7 @@ public class Slot : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.5f);
 
-        if(tokens.Count == 2)
+        if(tokens.Count == 2 && bM.eat == false)
         {
 
             Transform firstToken = tokens[0].transform;
@@ -168,6 +173,7 @@ public class Slot : MonoBehaviour {
         }
         else
         {
+            bM.eat = false;
             Debug.Log("wtf");
         }
     }

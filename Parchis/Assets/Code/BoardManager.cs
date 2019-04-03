@@ -25,6 +25,7 @@ public class BoardManager : MonoBehaviour {
     private bool killedToken = false;
     private Token lastTokenUsed;
     private bool sixDrop;
+    public bool eat;
 
     // Use this for initialization
     void Start () {
@@ -184,7 +185,7 @@ public class BoardManager : MonoBehaviour {
             {
                 //TODO
                 //WIN
-                Debug.Log("win");
+                Debug.LogError("WIN!");
             }
         }
         if (slots[index].stairTile)
@@ -203,7 +204,7 @@ public class BoardManager : MonoBehaviour {
 
             if (CheckEats(token, index))
             {
-
+                //IA - ChooseOneMove
             }
             else
             {
@@ -250,6 +251,7 @@ public class BoardManager : MonoBehaviour {
                     //DeadAnimation
                     //remove token eated
                     currentInSlotToken.player.JailToken(currentInSlotToken.tokenIndex);
+                    eat = true;
                     currentSlot.RemovingToken(currentInSlotToken);
 
                     //make eaten move
@@ -260,6 +262,7 @@ public class BoardManager : MonoBehaviour {
                     }
                     else
                     {
+                        eat = true;
                         return true;
                     }
 
@@ -417,13 +420,13 @@ public class BoardManager : MonoBehaviour {
 
                     if (openableBarrier)
                     {
-
+                        //IA - ChooseOneMove
                     }
                     else
                     {
                         if (currentPlayer.CheckMoves(diceNumb))
                         {
-
+                            //IA - ChooseOneMove
                         }
                         else
                         {
