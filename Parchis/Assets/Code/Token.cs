@@ -70,9 +70,8 @@ public class Token : MonoBehaviour { //, IPointerClickHandler {
 
         Debug.DrawLine(ray.origin, ray.direction * 10, Color.black, 5f);
         
-        if (Physics.Raycast(ray, out hitInfo)) //, lm))
+        if (Physics.Raycast(ray, out hitInfo) && enabledMove) //, lm))
         {
-            Debug.Log(hitInfo.collider.gameObject.name);
             if(hitInfo.collider.gameObject == this.gameObject)
             {
                 Clicked();

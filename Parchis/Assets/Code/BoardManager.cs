@@ -109,31 +109,40 @@ public class BoardManager : MonoBehaviour {
         //Players
         for (int i = 0; i < this.transform.childCount; i++)
         {
-            players[i] = transform.GetChild(i).GetComponent<Player>();
-            players[i].bM = this;
+            int f = i;
+            players[f] = transform.GetChild(f).GetComponent<Player>();
+            players[f].bM = this;
 
-            //MatchInfo.PlayerDefinition playerDefinition = MatchInfo.Instance.ReturnByColorIndex(i);
+            MatchInfo.PlayerDefinition playerDefinition = MatchInfo.Instance.ReturnByColorIndex(f);
 
-            if (i == 0)
+            if (f == 0)
             {
-                players[i].color = Color.yellow;
+                players[f].color = Color.yellow;
                 //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
-            if (i == 1)
+            if (f == 1)
             {
-                players[i].color = Color.blue;
+                players[f].color = Color.blue;
                 //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
-            if (i == 2)
+            if (f == 2)
             {
-                players[i].color = Color.red;
+                players[f].color = Color.red;
                 //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
-            if (i == 3)
+            if (f == 3)
             {
-                players[i].color = Color.green;
+                players[f].color = Color.green;
                 //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
+
+
+            characters[playerDefinition.imageIndex].transform.position = players[f].transform.position;
+            players[f].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
         }
 
         //MoveCharacters 
