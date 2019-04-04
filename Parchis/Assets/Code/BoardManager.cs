@@ -7,6 +7,7 @@ using DG.Tweening;
 public class BoardManager : MonoBehaviour {
 
     public BoardUI ui;
+    public CharacterController[] characters; 
 
     private Player[] players = new Player[4];
     //HookeableRules
@@ -29,6 +30,8 @@ public class BoardManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        Debug.Log(MatchInfo.Instance.ole);
 
         ui = GameObject.Find("Canvas").gameObject.GetComponent<BoardUI>();
 
@@ -108,11 +111,33 @@ public class BoardManager : MonoBehaviour {
         {
             players[i] = transform.GetChild(i).GetComponent<Player>();
             players[i].bM = this;
-            if (i == 0) players[i].color = Color.yellow;
-            if (i == 1) players[i].color = Color.blue;
-            if (i == 2) players[i].color = Color.red;
-            if (i == 3) players[i].color = Color.green;
+
+            //MatchInfo.PlayerDefinition playerDefinition = MatchInfo.Instance.ReturnByColorIndex(i);
+
+            if (i == 0)
+            {
+                players[i].color = Color.yellow;
+                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+            }
+            if (i == 1)
+            {
+                players[i].color = Color.blue;
+                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+            }
+            if (i == 2)
+            {
+                players[i].color = Color.red;
+                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+            }
+            if (i == 3)
+            {
+                players[i].color = Color.green;
+                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
+            }
         }
+
+        //MoveCharacters 
+
         currentPlayer = players[0];
         currentPlayerIndex = 0;
 
