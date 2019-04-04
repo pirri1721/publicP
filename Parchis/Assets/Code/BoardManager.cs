@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class BoardManager : MonoBehaviour {
 
-    private BoardUI ui;
+    public BoardUI ui;
 
     private Player[] players = new Player[4];
     //HookeableRules

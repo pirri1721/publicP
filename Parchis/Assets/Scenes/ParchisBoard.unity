@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45007557, g: 0.5001258, b: 0.5754777, a: 1}
+  m_IndirectSpecularColor: {r: 0.45007515, g: 0.50012535, b: 0.57547724, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150a2d6be4e1b7c4b98137ef0837bc74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 0}
   slots: []
   eat: 0
 --- !u!4 &25594007
@@ -575,9 +576,10 @@ GameObject:
   - component: {fileID: 111952677}
   - component: {fileID: 111952676}
   - component: {fileID: 111952680}
+  - component: {fileID: 111952681}
   m_Layer: 0
   m_Name: Token (13)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -627,7 +629,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 111952674}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -695,6 +697,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &111952681
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111952674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000001013279, y: 0, z: -0.00000008940697}
 --- !u!1001 &115273302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2277,9 +2292,10 @@ GameObject:
   - component: {fileID: 281510142}
   - component: {fileID: 281510141}
   - component: {fileID: 281510145}
+  - component: {fileID: 281510146}
   m_Layer: 0
   m_Name: Token (4)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2329,7 +2345,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 281510139}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -2397,6 +2413,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &281510146
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281510139}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &289126759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,7 +2535,7 @@ GameObject:
   - component: {fileID: 331688153}
   - component: {fileID: 331688152}
   - component: {fileID: 331688151}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RayWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3523,9 +3552,10 @@ GameObject:
   - component: {fileID: 506930528}
   - component: {fileID: 506930527}
   - component: {fileID: 506930531}
+  - component: {fileID: 506930532}
   m_Layer: 0
   m_Name: Token (10)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3575,7 +3605,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 506930525}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -3643,6 +3673,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &506930532
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506930525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000086426735}
 --- !u!1 &535478711
 GameObject:
   m_ObjectHideFlags: 0
@@ -4100,9 +4143,10 @@ GameObject:
   - component: {fileID: 592500438}
   - component: {fileID: 592500437}
   - component: {fileID: 592500441}
+  - component: {fileID: 592500442}
   m_Layer: 0
   m_Name: Token (15)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4152,7 +4196,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 592500435}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -4220,6 +4264,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &592500442
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592500435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000086426735}
 --- !u!1 &599851955
 GameObject:
   m_ObjectHideFlags: 0
@@ -4335,6 +4392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c430d08b19cf9984a80b7925a44b9282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walls: {fileID: 2001971985}
   bM: {fileID: 0}
 --- !u!54 &606813275
 Rigidbody:
@@ -4796,9 +4854,10 @@ GameObject:
   - component: {fileID: 697466322}
   - component: {fileID: 697466321}
   - component: {fileID: 697466325}
+  - component: {fileID: 697466326}
   m_Layer: 0
   m_Name: Token (5)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4848,7 +4907,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 697466319}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -4916,6 +4975,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &697466326
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697466319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000086426735}
 --- !u!1001 &709364940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7408,9 +7480,10 @@ GameObject:
   - component: {fileID: 1107675349}
   - component: {fileID: 1107675348}
   - component: {fileID: 1107675352}
+  - component: {fileID: 1107675353}
   m_Layer: 0
   m_Name: Token (7)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7460,7 +7533,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1107675346}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -7528,6 +7601,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &1107675353
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107675346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000001013279, y: 0, z: -0.00000008940697}
 --- !u!1 &1122410873
 GameObject:
   m_ObjectHideFlags: 0
@@ -8495,6 +8581,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1732594798}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1246262402
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246262401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &1246262406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9605,7 +9704,7 @@ GameObject:
   - component: {fileID: 1402212496}
   - component: {fileID: 1402212495}
   - component: {fileID: 1402212494}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9914,7 +10013,7 @@ GameObject:
   - component: {fileID: 1425854840}
   - component: {fileID: 1425854839}
   - component: {fileID: 1425854838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10518,7 +10617,7 @@ GameObject:
   - component: {fileID: 1466836400}
   - component: {fileID: 1466836399}
   - component: {fileID: 1466836398}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10975,9 +11074,10 @@ GameObject:
   - component: {fileID: 1527532552}
   - component: {fileID: 1527532551}
   - component: {fileID: 1527532555}
+  - component: {fileID: 1527532556}
   m_Layer: 0
   m_Name: Token (1)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11027,7 +11127,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1527532549}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -11095,6 +11195,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &1527532556
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527532549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1530411993
 GameObject:
   m_ObjectHideFlags: 0
@@ -11206,9 +11319,10 @@ GameObject:
   - component: {fileID: 1545332421}
   - component: {fileID: 1545332420}
   - component: {fileID: 1545332424}
+  - component: {fileID: 1545332425}
   m_Layer: 0
   m_Name: Token (12)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11258,7 +11372,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1545332418}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -11326,6 +11440,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &1545332425
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545332418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000001013279, y: 0, z: -0.00000008940697}
 --- !u!4 &1553373355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400146, guid: 6bd9d04f0fed38d4abb47a460ac324f4,
@@ -11997,9 +12124,10 @@ GameObject:
   - component: {fileID: 1640638969}
   - component: {fileID: 1640638968}
   - component: {fileID: 1640638972}
+  - component: {fileID: 1640638973}
   m_Layer: 0
   m_Name: Token (2)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12049,7 +12177,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1640638966}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -12117,6 +12245,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &1640638973
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640638966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1657422473
 GameObject:
   m_ObjectHideFlags: 0
@@ -12617,9 +12758,10 @@ GameObject:
   - component: {fileID: 1698631685}
   - component: {fileID: 1698631684}
   - component: {fileID: 1698631688}
+  - component: {fileID: 1698631689}
   m_Layer: 0
   m_Name: Token (6)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12669,7 +12811,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1698631682}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -12737,6 +12879,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &1698631689
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698631682}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000001013279, y: 0, z: 0.00000086426735}
 --- !u!1 &1720601750
 GameObject:
   m_ObjectHideFlags: 0
@@ -13108,6 +13263,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 935853513}
     m_Modifications:
+    - target: {fileID: 1958444288333120, guid: eac8a4fd0e3b806428a963f84ffc4e5f, type: 3}
+      propertyPath: m_TagString
+      value: Token
+      objectReference: {fileID: 0}
     - target: {fileID: 4656899651140506, guid: eac8a4fd0e3b806428a963f84ffc4e5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.313
@@ -13153,7 +13312,7 @@ PrefabInstance:
     - target: {fileID: 136792147286927414, guid: eac8a4fd0e3b806428a963f84ffc4e5f,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 136792147286927414, guid: eac8a4fd0e3b806428a963f84ffc4e5f,
         type: 3}
@@ -14404,7 +14563,7 @@ GameObject:
   - component: {fileID: 2001971988}
   - component: {fileID: 2001971987}
   - component: {fileID: 2001971986}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14500,7 +14659,7 @@ GameObject:
   - component: {fileID: 2002637711}
   - component: {fileID: 2002637710}
   - component: {fileID: 2002637709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14593,9 +14752,10 @@ GameObject:
   - component: {fileID: 2012352352}
   - component: {fileID: 2012352351}
   - component: {fileID: 2012352355}
+  - component: {fileID: 2012352356}
   m_Layer: 0
   m_Name: Token (14)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14645,7 +14805,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2012352349}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -14713,6 +14873,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &2012352356
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012352349}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2013923474 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100066, guid: 72a7a746e5f87d44caa95e9db4b9ded4,
@@ -14761,9 +14934,10 @@ GameObject:
   - component: {fileID: 2034762901}
   - component: {fileID: 2034762900}
   - component: {fileID: 2034762904}
+  - component: {fileID: 2034762905}
   m_Layer: 0
   m_Name: Token (8)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14813,7 +14987,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2034762898}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -14881,6 +15055,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &2034762905
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034762898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000086426735}
 --- !u!1 &2043742166
 GameObject:
   m_ObjectHideFlags: 0
@@ -14986,9 +15173,10 @@ GameObject:
   - component: {fileID: 2044220895}
   - component: {fileID: 2044220894}
   - component: {fileID: 2044220898}
+  - component: {fileID: 2044220899}
   m_Layer: 0
   m_Name: Token (11)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15038,7 +15226,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2044220892}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -15106,6 +15294,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &2044220899
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044220892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2053558506
 GameObject:
   m_ObjectHideFlags: 0
@@ -15120,9 +15321,10 @@ GameObject:
   - component: {fileID: 2053558509}
   - component: {fileID: 2053558508}
   - component: {fileID: 2053558512}
+  - component: {fileID: 2053558513}
   m_Layer: 0
   m_Name: Token (9)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15172,7 +15374,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2053558506}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -15240,6 +15442,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &2053558513
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053558506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000086426735}
 --- !u!1 &2060951385
 GameObject:
   m_ObjectHideFlags: 0
@@ -15527,9 +15742,10 @@ GameObject:
   - component: {fileID: 2095618412}
   - component: {fileID: 2095618411}
   - component: {fileID: 2095618415}
+  - component: {fileID: 2095618416}
   m_Layer: 0
   m_Name: Token (3)
-  m_TagString: Untagged
+  m_TagString: Token
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15579,7 +15795,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2095618409}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.86
   m_Height: 2
   m_Direction: 1
@@ -15647,6 +15863,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!135 &2095618416
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095618409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: 0.00000086426735}
 --- !u!1 &2102283669
 GameObject:
   m_ObjectHideFlags: 0

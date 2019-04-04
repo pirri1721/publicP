@@ -52,6 +52,18 @@ public class BoardUI : MonoBehaviour {
         }
     }
 
+    public GameObject GetActiveCamera()
+    {
+        if (mainCamera.activeInHierarchy)
+        {
+            return mainCamera;
+        }
+        else
+        {
+            return dinamycCamera;
+        }
+    }
+
     // Update is called once per frame
     void Update () {
 		

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class Token : MonoBehaviour, IPointerClickHandler {
+public class Token : MonoBehaviour { //, IPointerClickHandler {
 
     public bool free = false;
     public int currentSlot;
@@ -23,6 +23,8 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     public Outline outline;
     public bool stair;
+    private bool inRadius;
+    //private LayerMask lm = ~(1 << LayerMask.NameToLayer("Walls"));
 
     // Use this for initialization
     void Start () {
@@ -45,13 +47,38 @@ public class Token : MonoBehaviour, IPointerClickHandler {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
 
-            nextMove = 4;
-            enabledMove = true;
+        if (Input.GetMouseButtonDown(0))
+        {
+            MouseDown();
         }
+
+        /*
+        if (inRadius)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Clicked();
+            }
+        }*/
 	}
+
+    private void MouseDown()
+    {
+        Ray ray = bM.ui.GetActiveCamera().GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+
+        Debug.DrawLine(ray.origin, ray.direction * 10, Color.black, 5f);
+        
+        if (Physics.Raycast(ray, out hitInfo)) //, lm))
+        {
+            Debug.Log(hitInfo.collider.gameObject.name);
+            if(hitInfo.collider.gameObject == this.gameObject)
+            {
+                Clicked();
+            }
+        }
+    }
 
     public bool TokenCheckMove(int diceNumb)
     {
@@ -112,6 +139,29 @@ public class Token : MonoBehaviour, IPointerClickHandler {
         }
     }
 
+    public void Clicked()
+    {
+        if (enabledMove)
+        {
+            Move();
+            Debug.Log("Clicked when possible");
+        }
+        else Debug.Log("Clicked");
+    }
+
+    private void OnMouseEnter()
+    {
+
+        Debug.Log("Enter");
+        inRadius = true;
+    }
+
+    private void OnMouseExit()
+    {
+        inRadius = false;
+    }
+
+    /*
     public void OnPointerClick(PointerEventData eventData)
     {
         
@@ -122,7 +172,7 @@ public class Token : MonoBehaviour, IPointerClickHandler {
             Debug.Log("Clicked when possible");
         }else
         Debug.Log("Clicked");
-    }
+    }*/
 
     public void UpdateCurrentSlot(int destinationSlot)
     {

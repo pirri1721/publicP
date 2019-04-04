@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour {
 
+    public GameObject walls;
     public BoardManager bM;
 
     private Vector3 originalPosition;
@@ -15,8 +16,8 @@ public class Dice : MonoBehaviour {
     //private float rgdBAngularVelocityMagnitude;
     private bool diceThrowed = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         originalPosition = this.transform.position;
         origianlRotation = this.transform.rotation;
@@ -70,36 +71,42 @@ public class Dice : MonoBehaviour {
         {
             Debug.Log("4");
             bM.ThrowDice(4);
+            walls.SetActive(false);
         }
         else
             if (Physics.Raycast(transform.position, -transform.forward, out hitInfo) && hitInfo.collider.name == "RayWall")
         {
             Debug.Log("3");
             bM.ThrowDice(3);
+            walls.SetActive(false);
         }
         else
             if(Physics.Raycast(transform.position, transform.up, out hitInfo) && hitInfo.collider.name == "RayWall")
         {
             Debug.Log("5");
             bM.ThrowDice(5);
+            walls.SetActive(false);
         }
         else
             if (Physics.Raycast(transform.position, -transform.up, out hitInfo) && hitInfo.collider.name == "RayWall")
         {
             Debug.Log("2");
             bM.ThrowDice(2);
+            walls.SetActive(false);
         }
         else
             if (Physics.Raycast(transform.position, transform.right, out hitInfo) && hitInfo.collider.name == "RayWall")
         {
             Debug.Log("1");
             bM.ThrowDice(1);
+            walls.SetActive(false);
         }
         else
             if (Physics.Raycast(transform.position, -transform.right, out hitInfo) && hitInfo.collider.name == "RayWall")
         {
             Debug.Log("6");
             bM.ThrowDice(6);
+            walls.SetActive(false);
         }
         else
         {
@@ -115,6 +122,8 @@ public class Dice : MonoBehaviour {
     public IEnumerator LaunchCoroutine()
     {
         rgdB.useGravity = true;
+
+        walls.SetActive(true);
 
         float randomF = UnityEngine.Random.Range(0.3f, 0.7f) * 800f;
         rgdB.AddForce(Vector3.up * randomF);
