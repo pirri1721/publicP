@@ -54,12 +54,12 @@ public class MenuController : MonoBehaviour
         names[2] = "GreatSword";
         names[3] = "Axe";
 
-        players = new PlayerDefinition[size];
+        players = new MatchInfo.PlayerDefinition[size];
 
         for(int i = 0; i< players.Length; i++)
         {
             int f = i;
-            players[f] = new PlayerDefinition();
+            players[f] = new MatchInfo.PlayerDefinition();
 
             chars[f] = CharsSelectionView.transform.GetChild(0).GetChild(f).GetComponent<Image>();
             CharsSelectionView.transform.GetChild(0).GetChild(f).GetComponent<Button>().onClick.AddListener(() => CharButton(f));
