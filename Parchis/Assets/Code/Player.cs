@@ -14,9 +14,9 @@ public class Player : MonoBehaviour {
     public Player ally;
 
     public Token lastTokenUsed;
-    public CharacterController charController;
+    public CharacterAnimController charController;
     public List<Barrier> barriers;
-    public bool first = true;
+    public bool first = false; // TODO true;
     public bool ia;
 
     public struct Barrier
@@ -33,59 +33,6 @@ public class Player : MonoBehaviour {
         return barrier;
     }
 
-    public void AddBarrier(Token tokenA, Token tokenB)
-    {
-        barriers.Add(BarrierConstructor(tokenA, tokenB));
-    }
-
-    public void RemoveBarrier(int indexBarrier)
-    {
-        try 
-        {
-            barriers.Remove(barriers[indexBarrier]);
-            /*
-            if (barriers.Count-1 >= indexBarrier)
-            {
-                barriers.Remove(barriers[indexBarrier]);
-            }*/
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            Debug.LogError("lol");
-        }
-    }
-
-    public void RemoveBarrier(Token token)
-    {
-        for(int i=0; i< barriers.Count; i++)
-        {
-            if(barriers[i].token1 == token)
-            {
-                barriers.Remove(barriers[i]);
-            }
-        }
-    }
-
-    public Token GetOwnTokenFromWall(int indexBarrierQuery)
-    {
-        Token ownToken;
-        Barrier barrierQuery = barriers[indexBarrierQuery];
-
-        if (barrierQuery.token1.player == this)
-        {
-            ownToken = barrierQuery.token1;
-            Debug.Log("Always in 1");
-        }
-        else
-        {
-            ownToken = barrierQuery.token2;
-            Debug.LogError("Not in 1");
-        }
-
-        return ownToken;
-    }
-
-    // Use this for initialization
     void Start () {
 
         barriers = new List<Barrier>();
@@ -104,19 +51,9 @@ public class Player : MonoBehaviour {
         tokens[0].free = true;
         //bM.FreeToken(tokens[0]);
         tokens[0].FreeToken();
-
-
+        
         //charController.gameObject.transform.LookAt(bM.transform);
-
         charController.gameObject.transform.rotation = Quaternion.LookRotation(bM.transform.position-transform.position,transform.up);
-        //TEST
-
-        //tokens[0] = GameObject.Find("Token").gameObject.GetComponent<Token>();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-
     }
 
     public bool CheckMoves(int diceNumb)
@@ -174,8 +111,7 @@ public class Player : MonoBehaviour {
         {
             tokens[i].enabledMove = false;
             tokens[i].outline.enabled = false;
-        }
-        
+        }        
     }
 
     public void JailToken(int tokenIndex)
@@ -192,9 +128,11 @@ public class Player : MonoBehaviour {
     {
         for(int i =0; i < tokens.Length; i++)
         {
-            if (!tokens[i].free) return false;
+            if (!tokens[i].free)
+            {
+                return false;
+            }
         }
-
         return true;
     }
 
@@ -222,11 +160,64 @@ public class Player : MonoBehaviour {
         return true;
     }
 
-    public void GetCharacter(CharacterController character)
+    public void GetCharacter(CharacterAnimController character)
     {
         charController = character;
         charController.gameObject.transform.position = transform.position;
         charController.gameObject.transform.rotation = Quaternion.LookRotation(bM.transform.position);
     }
 
+    #region Barriers
+    public void AddBarrier(Token tokenA, Token tokenB)
+    {
+        barriers.Add(BarrierConstructor(tokenA, tokenB));
+    }
+
+    public void RemoveBarrier(int indexBarrier)
+    {
+        try
+        {
+            barriers.Remove(barriers[indexBarrier]);
+            /*
+            if (barriers.Count-1 >= indexBarrier)
+            {
+                barriers.Remove(barriers[indexBarrier]);
+            }*/
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Debug.LogError("lol");
+        }
+    }
+
+    public void RemoveBarrier(Token token)
+    {
+        for (int i = 0; i < barriers.Count; i++)
+        {
+            if (barriers[i].token1 == token)
+            {
+                barriers.Remove(barriers[i]);
+            }
+        }
+    }
+
+    public Token GetOwnTokenFromWall(int indexBarrierQuery)
+    {
+        Token ownToken;
+        Barrier barrierQuery = barriers[indexBarrierQuery];
+
+        if (barrierQuery.token1.player == this)
+        {
+            ownToken = barrierQuery.token1;
+            Debug.Log("Always in 1");
+        }
+        else
+        {
+            ownToken = barrierQuery.token2;
+            Debug.LogError("Not in 1");
+        }
+
+        return ownToken;
+    }
+    #endregion
 }

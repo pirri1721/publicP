@@ -12,59 +12,23 @@ public class Dice : MonoBehaviour {
     private Quaternion origianlRotation;
 
     private Rigidbody rgdB;
-    //private Vector3 rgdBVelocityMagnitude;
-    //private float rgdBAngularVelocityMagnitude;
-    private bool diceThrowed = false;
 
-    // Use this for initialization
     void Start () {
 
         originalPosition = this.transform.position;
         origianlRotation = this.transform.rotation;
 
         rgdB = this.GetComponent<Rigidbody>();
-        //rgdBVelocityMagnitude = rgdB.velocity*100;
-
-        //StartCoroutine(Launch());
-    }
-	
-	// Update is called once per frame
-	void Update () {
-
-        //Debug.Log(rgdB.velocity*10);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(LaunchCoroutine());
-        }
-
-        Debug.DrawLine(this.transform.position, rgdB.velocity*10, Color.black);
-
-        /*
-        Debug.DrawRay(transform.position, transform.forward, Color.blue);//4
-        Debug.DrawRay(transform.position, transform.up, Color.black);//5
-        Debug.DrawRay(transform.position, transform.right, Color.red);//1
-        */
-
-        /*
-        if(rgdB.velocity * 10 == Vector3.zero && diceThrowed)
-        {
-            GetNumb();
-        }
-        */
     }
 
     public void GetNumb(int numb)
     {
-        diceThrowed = false;
         bM.ThrowDice(numb);
     }
 
     private void GetNumb()
     {
         Debug.Log("getting numb");
-
-        diceThrowed = false;
 
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position, transform.forward,out hitInfo) && hitInfo.collider.name=="RayWall")
@@ -132,7 +96,6 @@ public class Dice : MonoBehaviour {
         rgdB.AddTorque(Vector3.right * randomT);
 
         yield return new WaitForSeconds(0.25f);
-        diceThrowed = true;
 
         yield return new WaitUntil(() => rgdB.velocity.magnitude < 0.01f);
         GetNumb();

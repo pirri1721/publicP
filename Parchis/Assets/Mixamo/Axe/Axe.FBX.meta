@@ -11,7 +11,12 @@ ModelImporter:
     2300000: BattleAxe_GEO
     3300000: BattleAxe_GEO
     4300000: BattleAxe_GEO
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn5
+    second: {fileID: 2100000, guid: 7127c186da9e7734ca07aa649b31bdb5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

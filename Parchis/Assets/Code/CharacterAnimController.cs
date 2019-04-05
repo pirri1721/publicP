@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterAnimController : MonoBehaviour
 {
     public GameObject weapon;
 
@@ -14,7 +14,6 @@ public class CharacterController : MonoBehaviour
     Vector3 weaponOriginalLocalposition;
     Quaternion weaponOriginalRotation;
 
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();

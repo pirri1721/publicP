@@ -140,7 +140,7 @@ public class MenuController : MonoBehaviour
 
             currentPlayer = playerDefinitionsPanel.transform.GetChild(index).gameObject;
 
-            currentPlayer.transform.GetChild(0).GetComponent<Image>().sprite = null;
+            currentPlayer.transform.GetChild(0).GetComponent<Image>().sprite = bg;
             //currentPlayer.transform.GetChild(0).GetComponent<Image>().color = Color.clear;
         }
         else if (State == 2)

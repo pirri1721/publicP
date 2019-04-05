@@ -7,7 +7,7 @@ using DG.Tweening;
 public class BoardManager : MonoBehaviour {
 
     public BoardUI ui;
-    public CharacterController[] characters; 
+    public CharacterAnimController[] characters; 
 
     private Player[] players = new Player[4];
     //HookeableRules
@@ -136,7 +136,7 @@ public class BoardManager : MonoBehaviour {
 
             //Aquí hacen falta comentarios
             characters[playerDefinition.charIndex].transform.position = players[f].transform.position;
-            players[f].charController = characters[playerDefinition.charIndex].GetComponent<CharacterController>();
+            players[f].charController = characters[playerDefinition.charIndex].GetComponent<CharacterAnimController>();
 
             if (MatchInfo.Instance.IA)
             {
@@ -530,8 +530,9 @@ public class BoardManager : MonoBehaviour {
         }
         else
         {
-            dice.ResetDice();
-            dice.Launch();
+            Debug.Log("IA launching dice");
+            EnableLaunchButton();
+            LaunchButtonAction();
         }
     }
 

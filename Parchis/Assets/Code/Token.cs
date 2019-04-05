@@ -23,44 +23,22 @@ public class Token : MonoBehaviour { //, IPointerClickHandler {
 
     public Outline outline;
     public bool stair;
-    private bool inRadius;
+    //private bool inRadius;
     //private LayerMask lm = ~(1 << LayerMask.NameToLayer("Walls"));
-
-    // Use this for initialization
-    void Start () {
-
+    
+    void Start ()
+    {
         jailPosition = transform.position;
         outline = GetComponent<Outline>();
         outline.enabled = false;
-        //currentSlot = 0;
-
-        //Test
-        //nextMove = 4;
-        //enabledMove = true;
 	}
-
-    public void Tint()
-    {
-        color = player.color;
-        this.gameObject.GetComponent<MeshRenderer>().material.color = player.color;
-    }
-
-    // Update is called once per frame
+    
     void Update () {
 
         if (Input.GetMouseButtonDown(0))
         {
             MouseDown();
         }
-
-        /*
-        if (inRadius)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Clicked();
-            }
-        }*/
 	}
 
     private void MouseDown()
@@ -79,13 +57,18 @@ public class Token : MonoBehaviour { //, IPointerClickHandler {
         }
     }
 
+    public void Tint()
+    {
+        color = player.color;
+        this.gameObject.GetComponent<MeshRenderer>().material.color = player.color;
+    }
+
     public bool TokenCheckMove(int diceNumb)
     {
 
         if (bM.BMCheckMove(currentSlot, diceNumb))
         {
             //CreateShadow(thisToken)
-            //if (CheckEats(token, currentSlot+diceNumb))
             EnableMove(diceNumb);
             return true;
         }
@@ -148,6 +131,33 @@ public class Token : MonoBehaviour { //, IPointerClickHandler {
         else Debug.Log("Clicked");
     }
 
+
+    public void UpdateCurrentSlot(int destinationSlot)
+    {
+        currentSlot = destinationSlot;
+    }
+
+
+    public void FreeToken()
+    {
+        currentSlot = player.exitSlotIndex;
+        free = true;
+        transform.DOMove(bM.slots[player.exitSlotIndex].transform.position, 1);
+        bM.slots[player.exitSlotIndex].AddingToken(this);
+
+        if (bM.slots[player.exitSlotIndex].tokens.Count == 2)
+        {
+            Token currentInSlotToken = bM.slots[player.exitSlotIndex].tokens[0];
+
+            if (IsAlly(currentInSlotToken))
+            {
+                player.AddBarrier(this, currentInSlotToken);
+                currentInSlotToken.player.AddBarrier(currentInSlotToken, this);
+            }
+        }
+    }
+
+    /*
     private void OnMouseEnter()
     {
 
@@ -158,7 +168,7 @@ public class Token : MonoBehaviour { //, IPointerClickHandler {
     private void OnMouseExit()
     {
         inRadius = false;
-    }
+    }*/
 
     /*
     public void OnPointerClick(PointerEventData eventData)
@@ -172,29 +182,4 @@ public class Token : MonoBehaviour { //, IPointerClickHandler {
         }else
         Debug.Log("Clicked");
     }*/
-
-    public void UpdateCurrentSlot(int destinationSlot)
-    {
-        currentSlot = destinationSlot;
-    }
-
-    
-    public void FreeToken()
-    {
-        currentSlot = player.exitSlotIndex;
-        free = true;
-        transform.DOMove(bM.slots[player.exitSlotIndex].transform.position, 1);
-        bM.slots[player.exitSlotIndex].AddingToken(this);
-
-        if(bM.slots[player.exitSlotIndex].tokens.Count == 2)
-        {
-            Token currentInSlotToken = bM.slots[player.exitSlotIndex].tokens[0];
-
-            if (IsAlly(currentInSlotToken))
-            {
-                player.AddBarrier(this, currentInSlotToken);
-                currentInSlotToken.player.AddBarrier(currentInSlotToken, this);
-            }
-        }
-    }
 }

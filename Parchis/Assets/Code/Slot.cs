@@ -14,25 +14,20 @@ public class Slot : MonoBehaviour {
     public int specialIndex;
 
     public bool roadEnd;
-    //pre-rules
-    //rules
 
-    //public Token[] tokens = new Token[2];
     public List<Token> tokens;
     public BoardManager bM;
     public bool stairTile;
-
-    // Use this for initialization
+    
     void Awake () {
         tokens = new List<Token>(2);
         specialColor = new List<Color>();
-        //Debug.Log(tokens.Count);
     }
 
     public bool IsAvaible()
     {
         //TODO
-        //CheckForEnemies
+        //CheckForEnemies --> KickEm if is house
 
         if (tokens.Count == 2)
         {
@@ -43,39 +38,23 @@ public class Slot : MonoBehaviour {
 
     public bool ThisSlotAvaible(int followMove)
     {
-        if(roadEnd && followMove > 0)
+        //pre-rules
+        if (roadEnd && followMove > 0)
         {
             return false;
         }
-
-        if(tokens.Count == 2)
+        
+        //rules
+        if (tokens.Count == 2)
         {
             return false;
         }
-
-        /*
-        if(tokens[0] != null && tokens[1] != null)
-        {
-            return false;
-        }*/
 
         if(followMove > 0)
         {
-            
-            /*
-            if (specialMove)
-            {
-                    bM.CheckMove(specialIndex, followMove - 1);
-            }
-            else*/
-            //bM.CheckMove(index,followMove - 1);
             return bM.slots[index+1].ThisSlotAvaible(followMove-1);
         }
         
-        //pre-rules
-        //rules
-        //return bool?
-         //index = slots[index].NextIndex(token);
         return true;
     }
 
@@ -152,11 +131,7 @@ public class Slot : MonoBehaviour {
 
             firstToken.SetParent(this.transform);
             secondToken.SetParent(this.transform);
-            /*
-            firstToken.rotation = this.transform.rotation;
-            secondToken.rotation = this.transform.rotation;
-            yield return new WaitForEndOfFrame();
-            */
+
             if (this.transform.rotation.y > 0)
             {
                 firstToken.DOLocalMoveZ(this.transform.position.z - 0.2f, 0.5f);

@@ -3736,12 +3736,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331688149}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.68, y: 14.12, z: 0.68}
-  m_LocalScale: {x: 0.25531998, y: 100, z: 100}
+  m_LocalScale: {x: 0.2553201, y: 100.00006, z: 100}
   m_Children: []
-  m_Father: {fileID: 2001971989}
-  m_RootOrder: 4
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!65 &331688151
 BoxCollider:
@@ -4002,7 +4002,7 @@ Transform:
   - {fileID: 903308989}
   - {fileID: 999494740}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &355983977 stripped
 Transform:
@@ -5384,7 +5384,7 @@ RectTransform:
   - {fileID: 1021495113}
   - {fileID: 1948438883}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7868,7 +7868,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 35.23, y: -30.000002, z: 0}
 --- !u!1001 &648805830
 PrefabInstance:
@@ -11315,6 +11315,7 @@ MonoBehaviour:
   lastTokenUsed: {fileID: 0}
   charController: {fileID: 65373990}
   first: 1
+  ia: 0
 --- !u!4 &936172873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 459204, guid: b2e054983935ebc4c959a2513ac649dc,
@@ -11618,6 +11619,7 @@ MonoBehaviour:
   lastTokenUsed: {fileID: 0}
   charController: {fileID: 2013923477}
   first: 1
+  ia: 0
 --- !u!1001 &946760899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18296,6 +18298,7 @@ MonoBehaviour:
   lastTokenUsed: {fileID: 0}
   charController: {fileID: 1136662285}
   first: 1
+  ia: 0
 --- !u!1 &1425854836
 GameObject:
   m_ObjectHideFlags: 0
@@ -18906,6 +18909,7 @@ MonoBehaviour:
   lastTokenUsed: {fileID: 0}
   charController: {fileID: 1141549811}
   first: 1
+  ia: 0
 --- !u!4 &1462483538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 409632, guid: 471c1eb32c770a54ea8a1c3ffbda1de6,
@@ -26842,9 +26846,8 @@ Transform:
   - {fileID: 1425854837}
   - {fileID: 2002637708}
   - {fileID: 1466836397}
-  - {fileID: 331688150}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2002295189
 PrefabInstance:
