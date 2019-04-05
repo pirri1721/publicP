@@ -12,6 +12,7 @@ public class Dice : MonoBehaviour {
     private Quaternion origianlRotation;
 
     private Rigidbody rgdB;
+    private bool diceInMovement = false;
 
     void Start () {
 
@@ -29,6 +30,7 @@ public class Dice : MonoBehaviour {
     private void GetNumb()
     {
         Debug.Log("getting numb");
+        diceInMovement = false;
 
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position, transform.forward,out hitInfo) && hitInfo.collider.name=="RayWall")
@@ -74,17 +76,26 @@ public class Dice : MonoBehaviour {
         }
         else
         {
+            Debug.Log("Rerolling");
+            ResetDice();
             Launch();
         }
     }
 
     public void Launch ()
     {
-        StartCoroutine(LaunchCoroutine());
+        if (!diceInMovement)
+        {
+
+            StartCoroutine(LaunchCoroutine());
+        }
     }
 
     public IEnumerator LaunchCoroutine()
     {
+        yield return new WaitForEndOfFrame();
+
+        diceInMovement = true;
         rgdB.useGravity = true;
 
         walls.SetActive(true);

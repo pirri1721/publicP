@@ -29,12 +29,12 @@ public class BoardUI : MonoBehaviour {
 
     public void DisableGR()
     {
-        GR.enabled = false;
+        //GR.enabled = false;
     }
 
     public void EnableGR()
     {
-        GR.enabled = true;
+        //GR.enabled = true;
     }
 
     public void CameraButton()

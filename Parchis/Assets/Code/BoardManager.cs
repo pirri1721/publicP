@@ -156,7 +156,10 @@ public class BoardManager : MonoBehaviour {
 
         currentPlayer = players[0];
         currentPlayerIndex = 0;
-
+        if (currentPlayer.ia)
+        {
+            LaunchButtonAction();
+        }
 	}
 
     public void BMFreeToken(Token token)
@@ -224,6 +227,10 @@ public class BoardManager : MonoBehaviour {
             if (CheckEats(token, index))
             {
                 //IA - ChooseOneMove
+                if (currentPlayer.ia)
+                {
+                    ChooseOneMove();
+                }
             }
             else
             {
@@ -460,12 +467,20 @@ public class BoardManager : MonoBehaviour {
                         if (openableBarrier)
                         {
                             //IA - ChooseOneMove
+                            if (currentPlayer.ia)
+                            {
+                                ChooseOneMove();
+                            }
                         }
                         else
                         {
                             if (currentPlayer.CheckMoves(diceNumb))
                             {
                                 //IA - ChooseOneMove
+                                if (currentPlayer.ia)
+                                {
+                                    ChooseOneMove();
+                                }
                             }
                             else
                             {
@@ -543,7 +558,16 @@ public class BoardManager : MonoBehaviour {
         diceUsed = false;
 
         ui.UpdateTurnText(currentPlayer.name, currentPlayer.color);
-        EnableLaunchButton();
+        if (!currentPlayer.ia)
+        {
+            EnableLaunchButton();
+        }
+        else
+        {
+            Debug.Log("IA launching dice");
+            EnableLaunchButton();
+            LaunchButtonAction();
+        }
     }
 
     public void EnableLaunchButton()
@@ -561,6 +585,18 @@ public class BoardManager : MonoBehaviour {
         //TODO
         //disableButton
         ui.DisableGR();
+    }
+
+    public void ChooseOneMove()
+    {
+        for(int i=0; i< currentPlayer.tokens.Length; i++)
+        {
+            if (currentPlayer.tokens[i].enabledMove)
+            {
+                currentPlayer.tokens[i].Move();
+                ///LOL
+            }
+        }
     }
 
     public void EndGame()
