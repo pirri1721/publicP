@@ -203,7 +203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &58657171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -308,10 +308,10 @@ RectTransform:
   m_Father: {fileID: 736354434}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.85114, y: -40.149223}
-  m_SizeDelta: {x: 86.389046, y: 80.29845}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &105022763
 MonoBehaviour:
@@ -490,7 +490,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 115929513}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1280852031}
+        m_MethodName: TwoVersusTwoButtonAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &115929513
@@ -943,10 +954,10 @@ RectTransform:
   m_Father: {fileID: 1473617127}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 332.9968, y: -30.509445}
-  m_SizeDelta: {x: 93.42766, y: 61.01889}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315483391
 MonoBehaviour:
@@ -1279,7 +1290,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 374131312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1280852031}
+        m_MethodName: FourVersusButtonAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &374131312
@@ -1353,10 +1375,10 @@ RectTransform:
   m_Father: {fileID: 1793406224}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 321.59766, y: -17.29837}
-  m_SizeDelta: {x: 83.313614, y: 34.59674}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &384533820
 MonoBehaviour:
@@ -1491,10 +1513,10 @@ RectTransform:
   m_Father: {fileID: 1793406224}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 228.28403, y: -17.29837}
-  m_SizeDelta: {x: 83.313614, y: 34.59674}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408790913
 MonoBehaviour:
@@ -1680,7 +1702,7 @@ GameObject:
   - component: {fileID: 491692758}
   - component: {fileID: 491692757}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MatchInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1699,6 +1721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ole: string
+  ia: 0
+  allies: 0
 --- !u!4 &491692758
 Transform:
   m_ObjectHideFlags: 0
@@ -2003,10 +2027,10 @@ RectTransform:
   m_Father: {fileID: 1473617127}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 142.14148, y: -30.509445}
-  m_SizeDelta: {x: 93.42766, y: 61.01889}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640809886
 MonoBehaviour:
@@ -3295,10 +3319,10 @@ RectTransform:
   m_Father: {fileID: 736354434}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 152.32831, y: -40.149223}
-  m_SizeDelta: {x: 127.878525, y: 80.29845}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200958830
 MonoBehaviour:
@@ -3489,7 +3513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f07ac02374e36d418529b9d9959fbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharsSelecView: {fileID: 58657170}
+  ModeSelectionView: {fileID: 1712387172}
+  StageSelectionView: {fileID: 942416084}
+  CharsSelectionView: {fileID: 58657170}
   CharNextButton: {fileID: 810806625}
   CharPreviousButton: {fileID: 902581326}
   charBlockerPanel: {fileID: 1853459303}
@@ -3500,7 +3526,6 @@ MonoBehaviour:
   names: []
   chars: []
   colors: []
-  StageSelecView: {fileID: 942416084}
   stages:
   - {fileID: 21300000, guid: cc87c0c50f2e51e4a82224226dc7c4d2, type: 3}
   - {fileID: 21300000, guid: de395add5522082499b72250738d2350, type: 3}
@@ -3540,10 +3565,10 @@ RectTransform:
   m_Father: {fileID: 1473617127}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 237.56915, y: -30.509445}
-  m_SizeDelta: {x: 93.42766, y: 61.01889}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1281572107
 MonoBehaviour:
@@ -3710,10 +3735,10 @@ RectTransform:
   m_Father: {fileID: 736354434}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.4621, y: -40.149223}
-  m_SizeDelta: {x: 86.389046, y: 80.29845}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311444223
 MonoBehaviour:
@@ -3977,10 +4002,10 @@ RectTransform:
   m_Father: {fileID: 1473617127}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 46.71383, y: -30.509445}
-  m_SizeDelta: {x: 93.42766, y: 61.01889}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353699751
 MonoBehaviour:
@@ -4152,10 +4177,10 @@ RectTransform:
   m_Father: {fileID: 1793406224}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 134.97043, y: -17.29837}
-  m_SizeDelta: {x: 83.313614, y: 34.59674}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1403929694
 MonoBehaviour:
@@ -4290,7 +4315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.156, y: 0.35467973}
   m_AnchorMax: {x: 0.8426295, y: 0.4683203}
-  m_AnchoredPosition: {x: 0.49998474, y: 0}
+  m_AnchoredPosition: {x: 0.5, y: 0}
   m_SizeDelta: {x: 2.0317, y: -0.000015259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454323409
@@ -4688,10 +4713,10 @@ RectTransform:
   m_Father: {fileID: 1793406224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.656807, y: -17.29837}
-  m_SizeDelta: {x: 83.313614, y: 34.59674}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690425083
 MonoBehaviour:
@@ -4809,7 +4834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1712387173
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5162,10 +5187,10 @@ RectTransform:
   m_Father: {fileID: 736354434}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.194523, y: -40.149223}
-  m_SizeDelta: {x: 86.389046, y: 80.29845}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957107992
 MonoBehaviour:
@@ -5419,7 +5444,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2100042280}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1280852031}
+        m_MethodName: VersusIAButtonAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2100042280

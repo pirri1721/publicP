@@ -27,6 +27,8 @@ public class BoardManager : MonoBehaviour {
     private Token lastTokenUsed;
     private bool sixDrop;
     public bool eat;
+    private int highDice;
+    private int highDicePlayerIndex;
 
     // Use this for initialization
     void Start () {
@@ -391,86 +393,107 @@ public class BoardManager : MonoBehaviour {
 
         //int diceNumb = UnityEngine.Random.Range(1, 7);
 
-        Debug.Log(diceNumb);
-        if (diceNumb == 5 && slots[currentPlayer.exitSlotIndex].IsAvaible() && !currentPlayer.AllTokensFree())
+        if (currentPlayer.first)
         {
-            
-            if (currentPlayer.CheckJail())
+            if(diceNumb > highDice)
             {
+                highDice = diceNumb;
+                highDicePlayerIndex = currentPlayerIndex;
+            }
 
-                //slots[currentPlayer.exitSlotIndex].AddingToken()
+            currentPlayer.first = false;
+            if(currentPlayerIndex < 3)
+            {
                 NextTurn();
             }
             else
             {
-                Debug.LogError("look here");
+                NextTurn(highDicePlayerIndex);
             }
         }
         else
         {
-            if(currentPlayer.AllTokensJailed())
+            Debug.Log(diceNumb);
+            if (diceNumb == 5 && slots[currentPlayer.exitSlotIndex].IsAvaible() && !currentPlayer.AllTokensFree())
             {
-                NextTurn();
-            }
-            else
-            {
-                if (diceNumb == 6)
-                {
-                    sixDrop = true;
-                    RepeatTurn();
 
-                    //If all tokens free --> diceNumb = 7
-                    if (currentPlayer.AllTokensFree()) diceNumb = 7;
-                }
-
-                if (killedToken)
+                if (currentPlayer.CheckJail())
                 {
-                    killedToken = false;
+
+                    //slots[currentPlayer.exitSlotIndex].AddingToken()
                     NextTurn();
                 }
                 else
                 {
-                    bool openableBarrier = false;
-
-                    if (sixDrop)
+                    Debug.LogError("look here");
+                }
+            }
+            else
+            {
+                if (currentPlayer.AllTokensJailed())
+                {
+                    NextTurn();
+                }
+                else
+                {
+                    if (diceNumb == 6)
                     {
-                        if (currentPlayer.barriers.Count > 0)
-                        {
-                            //TODO
+                        sixDrop = true;
+                        RepeatTurn();
 
-                            for (int i = 0; i < currentPlayer.barriers.Count; i++)
-                            {
-                                Token playerToken = currentPlayer.GetOwnTokenFromWall(i);
-
-                                if (playerToken.TokenCheckMove(diceNumb) && !openableBarrier)
-                                {
-                                    openableBarrier = true;
-                                }
-                            }
-                        }
-
-                        sixDrop = false;
+                        //If all tokens free --> diceNumb = 7
+                        if (currentPlayer.AllTokensFree()) diceNumb = 7;
                     }
 
-                    if (openableBarrier)
+                    if (killedToken)
                     {
-                        //IA - ChooseOneMove
+                        killedToken = false;
+                        NextTurn();
                     }
                     else
                     {
-                        if (currentPlayer.CheckMoves(diceNumb))
+                        bool openableBarrier = false;
+
+                        if (sixDrop)
+                        {
+                            if (currentPlayer.barriers.Count > 0)
+                            {
+                                //TODO
+
+                                for (int i = 0; i < currentPlayer.barriers.Count; i++)
+                                {
+                                    Token playerToken = currentPlayer.GetOwnTokenFromWall(i);
+
+                                    if (playerToken.TokenCheckMove(diceNumb) && !openableBarrier)
+                                    {
+                                        openableBarrier = true;
+                                    }
+                                }
+                            }
+
+                            sixDrop = false;
+                        }
+
+                        if (openableBarrier)
                         {
                             //IA - ChooseOneMove
                         }
                         else
                         {
-                            NextTurn();
+                            if (currentPlayer.CheckMoves(diceNumb))
+                            {
+                                //IA - ChooseOneMove
+                            }
+                            else
+                            {
+                                NextTurn();
+                            }
                         }
                     }
                 }
-            }
 
-        }
+            }
+        }      
 
     }
 
@@ -514,6 +537,16 @@ public class BoardManager : MonoBehaviour {
             repeatedTurns = 0;
         }
 
+        //UI animation -- currentPlayer turn
+        diceUsed = false;
+
+        ui.UpdateTurnText(currentPlayer.name, currentPlayer.color);
+        EnableLaunchButton();
+    }
+
+    public void NextTurn(int playerIndex)
+    {
+        currentPlayerIndex = playerIndex;
         //UI animation -- currentPlayer turn
         diceUsed = false;
 

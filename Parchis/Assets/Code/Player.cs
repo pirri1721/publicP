@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     public Token lastTokenUsed;
     public CharacterController charController;
     public List<Barrier> barriers;
+    public bool first = true;
 
     public struct Barrier
     {

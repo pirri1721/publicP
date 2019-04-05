@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public GameObject ModeSelectionView;
+    public GameObject StageSelectionView;
     #region
     public GameObject CharsSelectionView;
     public Button CharNextButton;
@@ -34,7 +35,6 @@ public class MenuController : MonoBehaviour
     private Sprite bg;
     #endregion
 
-    public GameObject StageSelectionView;
 
     public Sprite[] stages;
     public Image stagePortrait;
@@ -77,6 +77,9 @@ public class MenuController : MonoBehaviour
         bg = CharsSelectionView.GetComponent<Image>().sprite;
 
         stagePortrait.sprite = stages[0];
+
+        CharsSelectionView.SetActive(false);
+        StageSelectionView.SetActive(false);
     }
 
     public void NextState()
@@ -93,6 +96,8 @@ public class MenuController : MonoBehaviour
             {
                 //NEXT VIEW
                 Debug.Log("NextView");
+                CharsSelectionView.SetActive(false);
+                StageSelectionView.SetActive(true);
                 //LOAD INFO TO MATCH INFO
                 MatchInfo.Instance.playerDefinitions = players;
             }
@@ -233,7 +238,7 @@ public class MenuController : MonoBehaviour
         if(stageIndex == 0)
         {
             Debug.Log("Launch town");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         else
         {
