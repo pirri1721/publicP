@@ -120,31 +120,36 @@ public class BoardManager : MonoBehaviour {
             if (f == 0)
             {
                 players[f].color = Color.yellow;
-                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
-                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
             if (f == 1)
             {
                 players[f].color = Color.blue;
-                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
-                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
             if (f == 2)
             {
                 players[f].color = Color.red;
-                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
-                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
             if (f == 3)
             {
                 players[f].color = Color.green;
-                //characters[playerDefinition.imageIndex].transform.position = players[i].transform.position;
-                //players[i].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
             }
 
+            //Aquí hacen falta comentarios
+            characters[playerDefinition.charIndex].transform.position = players[f].transform.position;
+            players[f].charController = characters[playerDefinition.charIndex].GetComponent<CharacterController>();
 
-            characters[playerDefinition.imageIndex].transform.position = players[f].transform.position;
-            players[f].charController = characters[playerDefinition.imageIndex].GetComponent<CharacterController>();
+            if (MatchInfo.Instance.IA)
+            {
+                if (playerDefinition.name_id != MatchInfo.Instance.playerDefinitions[0].name_id)
+                {
+                    players[f].ia = MatchInfo.Instance.IA;
+                }
+            }
+
+            if (MatchInfo.Instance.allies)
+            {
+                //TODO
+            }
         }
 
         //MoveCharacters 
@@ -152,18 +157,11 @@ public class BoardManager : MonoBehaviour {
         currentPlayer = players[0];
         currentPlayerIndex = 0;
 
-        //TEST
-        /*
-        Token token = GameObject.Find("Token").gameObject.GetComponent<Token>();
-        token.bM = this;
-        */
 	}
 
     public void BMFreeToken(Token token)
     {
         token.FreeToken();
-        //slots[currentPlayer.exitSlotIndex].AddingToken(token);
-        //token.gameObject.transform.DOMove(slots[currentPlayer.exitSlotIndex].transform.position, 0.5f);
     }
 
     public bool BMCheckMove(int slot, int diceNumb)
@@ -181,21 +179,6 @@ public class BoardManager : MonoBehaviour {
     public void MoveToken(Token token, int amount)
     {
         int index = token.currentSlot;
-        
-        /*
-        if(currentPlayer.barriers.Count > 0)
-        {
-            for(int i = 0; i< currentPlayer.barriers.Count; i++)
-            {
-                if(currentPlayer.barriers[i].token1 == token)
-                {
-                    Token otherToken = currentPlayer.barriers[i].token2;
-                    otherToken.player.RemoveBarrier(otherToken);
-
-                    currentPlayer.RemoveBarrier(i);
-                }
-            }
-        }*/
 
         slots[index].RemovingToken(token);
 
@@ -541,7 +524,15 @@ public class BoardManager : MonoBehaviour {
         diceUsed = false;
 
         ui.UpdateTurnText(currentPlayer.name, currentPlayer.color);
-        EnableLaunchButton();
+        if (!currentPlayer.ia)
+        {
+            EnableLaunchButton();
+        }
+        else
+        {
+            dice.ResetDice();
+            dice.Launch();
+        }
     }
 
     public void NextTurn(int playerIndex)

@@ -94,6 +94,13 @@ public class MenuController : MonoBehaviour
             }
             else
             {
+                if (MatchInfo.Instance.allies)
+                {
+                    //TODO
+                    //ally 0 & 1
+                    //ally 2 & 3
+                }
+
                 //NEXT VIEW
                 Debug.Log("NextView");
                 CharsSelectionView.SetActive(false);
@@ -120,13 +127,16 @@ public class MenuController : MonoBehaviour
             {
                 //PREVIOUS View
                 Debug.Log("PrevView");
+
+                ModeSelectionView.SetActive(true);
+                CharsSelectionView.SetActive(false);
             }
         }
         else if (State == 1)
         {
             State = 0;
 
-            CharsSelectionView.transform.GetChild(0).GetChild(players[index].imageIndex).GetComponent<Button>().interactable = true;
+            CharsSelectionView.transform.GetChild(0).GetChild(players[index].charIndex).GetComponent<Button>().interactable = true;
 
             currentPlayer = playerDefinitionsPanel.transform.GetChild(index).gameObject;
 
@@ -152,7 +162,7 @@ public class MenuController : MonoBehaviour
 
         players[index].name_id = names[i];
         players[index].image = chars[i];
-        players[index].imageIndex = i;
+        players[index].charIndex = i;
 
         currentPlayer = playerDefinitionsPanel.transform.GetChild(index).gameObject;
 
@@ -243,13 +253,14 @@ public class MenuController : MonoBehaviour
         else
         {
             Debug.Log("Launch tavern");
+            SceneManager.LoadScene(2);
         }
     }
 
     public void FourVersusButtonAction()
     {
         MatchInfo.Instance.allies = false;
-        MatchInfo.Instance.ia = false;
+        MatchInfo.Instance.IA = false;
         ModeSelectionView.SetActive(false);
         CharsSelectionView.SetActive(true);
     }
@@ -257,7 +268,7 @@ public class MenuController : MonoBehaviour
     public void TwoVersusTwoButtonAction()
     {
         MatchInfo.Instance.allies = true;
-        MatchInfo.Instance.ia = false;
+        MatchInfo.Instance.IA = false;
         ModeSelectionView.SetActive(false);
         CharsSelectionView.SetActive(true);
     }
@@ -265,7 +276,7 @@ public class MenuController : MonoBehaviour
     public void VersusIAButtonAction()
     {
         MatchInfo.Instance.allies = false;
-        MatchInfo.Instance.ia = true;
+        MatchInfo.Instance.IA = true;
         ModeSelectionView.SetActive(false);
         CharsSelectionView.SetActive(true);
     }

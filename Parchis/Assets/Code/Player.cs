@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public CharacterController charController;
     public List<Barrier> barriers;
     public bool first = true;
+    public bool ia;
 
     public struct Barrier
     {

@@ -7,7 +7,7 @@ public class MatchInfo : Singleton<MatchInfo>
 {
     public string ole = "string";
 
-    public bool ia;
+    public bool IA;
     public bool allies;
     public PlayerDefinition[] playerDefinitions;
 
@@ -15,7 +15,7 @@ public class MatchInfo : Singleton<MatchInfo>
     {
         public string name_id;
         public Image image;
-        public int imageIndex;
+        public int charIndex;
         public Color color;
         public int colorIndex;
     }
