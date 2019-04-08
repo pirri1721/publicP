@@ -497,26 +497,27 @@ public class BoardManager : MonoBehaviour {
 
     public void RepeatTurn()
     {
-        
-        repeatedTurns++;
-        if(repeatedTurns > 2)
+        if (currentPlayer.first)
         {
-            //se mató - lastTokenUsed --> Jail
-            //lastTokenUsed.ReturnJail();
-
-            if (!lastTokenUsed.stair)
+            repeatedTurns++;
+            if (repeatedTurns > 2)
             {
-                currentPlayer.JailToken(lastTokenUsed.tokenIndex);
-            }
+                //se mató - lastTokenUsed --> Jail
+                //lastTokenUsed.ReturnJail();
 
-            killedToken = true;
-            repeatTurn = false;
-        }
-        else
-        {
-            repeatTurn = true;
-        }
-        
+                if (!lastTokenUsed.stair)
+                {
+                    currentPlayer.JailToken(lastTokenUsed.tokenIndex);
+                }
+
+                killedToken = true;
+                repeatTurn = false;
+            }
+            else
+            {
+                repeatTurn = true;
+            }
+        }   
     }
 
     public void NextTurn()
@@ -553,7 +554,13 @@ public class BoardManager : MonoBehaviour {
 
     public void NextTurn(int playerIndex)
     {
+        currentPlayer.charController.Turn();
+
         currentPlayerIndex = playerIndex;
+
+        currentPlayer = players[currentPlayerIndex];
+        currentPlayer.charController.Turn();
+        repeatedTurns = 0;
         //UI animation -- currentPlayer turn
         diceUsed = false;
 

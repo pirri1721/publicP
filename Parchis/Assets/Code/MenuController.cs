@@ -7,9 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public GameObject Title;
+    private bool started;
+
     public GameObject ModeSelectionView;
     public GameObject StageSelectionView;
-    #region
+    #region CharSelectionView
+
     public GameObject CharsSelectionView;
     public Button CharNextButton;
     public Button CharPreviousButton;
@@ -34,7 +38,6 @@ public class MenuController : MonoBehaviour
     private int state = 0;
     private Sprite bg;
     #endregion
-
 
     public Sprite[] stages;
     public Image stagePortrait;
@@ -78,8 +81,23 @@ public class MenuController : MonoBehaviour
 
         stagePortrait.sprite = stages[0];
 
+        ModeSelectionView.SetActive(false);
         CharsSelectionView.SetActive(false);
         StageSelectionView.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (!started)
+        {
+            if (Input.anyKeyDown)
+            {
+                //Coroutine
+                Title.SetActive(false);
+                ModeSelectionView.SetActive(true);
+                started = true;
+            }
+        }
     }
 
     public void NextState()
@@ -168,7 +186,7 @@ public class MenuController : MonoBehaviour
 
         currentPlayer.transform.GetChild(0).GetComponent<Image>().sprite = chars[i].sprite;
 
-        CharsSelectionView.transform.GetChild(0).GetChild(i).GetComponent<Button>().interactable = false;
+        CharsSelectionView.transform.GetChild(0).transform.GetChild(i).GetComponent<Button>().interactable = false;
         State = 1;
     }
 
