@@ -24,7 +24,6 @@ public class MatchInfo : Singleton<MatchInfo>
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        Debug.Log(ole);
     }
 
     // Update is called once per frame

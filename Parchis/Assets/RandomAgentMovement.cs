@@ -8,6 +8,7 @@ public class RandomAgentMovement : MonoBehaviour
     public Transform[] points;
     private NavMeshAgent agent;
     private Animator anim;
+    private int index;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,8 @@ public class RandomAgentMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         anim.SetTrigger("ia");
-        agent.destination = points[0].position;
+        index = 0;
+        agent.destination = points[index].position;
     }
 
     // Update is called once per frame
@@ -24,9 +26,24 @@ public class RandomAgentMovement : MonoBehaviour
     {
         anim.SetFloat("speed", agent.speed);
 
-        if(agent.remainingDistance < 0.5f)
+        if(agent.remainingDistance < 1.5f)
         {
+            Debug.Log("lol");
+            Debug.Log(agent.remainingDistance);
+            Debug.Log(agent.destination);
+            agent.destination = points[NextIndex()].position;
+        }
+    }
 
+    public int NextIndex()
+    {
+        if(index + 1 >= points.Length)
+        {
+            return 0;
+        }
+        else
+        {
+            return index++;
         }
     }
 }
