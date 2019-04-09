@@ -10,6 +10,7 @@ public class BoardUI : MonoBehaviour {
 
     public GameObject mainCamera;
     public GameObject dinamycCamera;
+    public GameObject animCamera;
 
     //private Canvas canvas;
     private GraphicRaycaster GR;
@@ -18,6 +19,7 @@ public class BoardUI : MonoBehaviour {
         //canvas = this.gameObject.GetComponent<Canvas>();
         GR = this.gameObject.GetComponent<GraphicRaycaster>();
 
+        mainCamera.SetActive(false);
         dinamycCamera.SetActive(false);
     }
 
@@ -25,6 +27,12 @@ public class BoardUI : MonoBehaviour {
     {
         turnText.text = "It's " + name + "'s turn";
         turnText.transform.parent.GetComponent<Image>().color = color;
+    }
+
+    public void DestroyMovecamera()
+    {
+        mainCamera.SetActive(true);
+        animCamera.SetActive(false);
     }
 
     public void DisableGR()
@@ -43,6 +51,7 @@ public class BoardUI : MonoBehaviour {
         {
             mainCamera.SetActive(false);
             dinamycCamera.SetActive(true);
+            animCamera.SetActive(false);
         }
         else
         {

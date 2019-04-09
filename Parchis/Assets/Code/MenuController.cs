@@ -266,12 +266,25 @@ public class MenuController : MonoBehaviour
         if(stageIndex == 0)
         {
             Debug.Log("Launch town");
+            SceneManager.sceneLoaded += Loadedscene;
             SceneManager.LoadScene(1);
+
         }
         else
         {
             Debug.Log("Launch tavern");
             SceneManager.LoadScene(2);
+        }
+    }
+
+    void Loadedscene(Scene scene, LoadSceneMode mode)
+    {
+        scene = SceneManager.GetActiveScene();
+
+        if (scene.buildIndex == 1)
+        {
+            //TODO cam anim
+            Debug.Log("loaded");
         }
     }
 
