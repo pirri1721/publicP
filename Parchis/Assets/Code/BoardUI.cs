@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BoardUI : MonoBehaviour {
 
@@ -19,7 +20,10 @@ public class BoardUI : MonoBehaviour {
         //canvas = this.gameObject.GetComponent<Canvas>();
         GR = this.gameObject.GetComponent<GraphicRaycaster>();
 
-        mainCamera.SetActive(false);
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            mainCamera.SetActive(false);
+        }
         dinamycCamera.SetActive(false);
     }
 

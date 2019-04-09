@@ -33,8 +33,6 @@ public class BoardManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        Debug.Log(MatchInfo.Instance.ole);
-
         ui = GameObject.Find("Canvas").gameObject.GetComponent<BoardUI>();
 
         //Dice
@@ -158,9 +156,16 @@ public class BoardManager : MonoBehaviour {
         currentPlayerIndex = 0;
         if (currentPlayer.ia)
         {
-            LaunchButtonAction();
+            //WaitForEndAnimcamera
+            StartCoroutine(LaunchDiceIA(4f));
         }
 	}
+
+    private IEnumerator LaunchDiceIA(float i)
+    {
+        yield return new WaitForSeconds(i);
+        LaunchButtonAction();
+    }
 
     public void BMFreeToken(Token token)
     {
@@ -548,7 +553,7 @@ public class BoardManager : MonoBehaviour {
         {
             Debug.Log("IA launching dice");
             EnableLaunchButton();
-            LaunchButtonAction();
+            StartCoroutine(LaunchDiceIA(2f));
         }
     }
 
@@ -573,7 +578,7 @@ public class BoardManager : MonoBehaviour {
         {
             Debug.Log("IA launching dice");
             EnableLaunchButton();
-            LaunchButtonAction();
+            StartCoroutine(LaunchDiceIA(2f));
         }
     }
 
@@ -587,7 +592,7 @@ public class BoardManager : MonoBehaviour {
 
     public void LaunchButtonAction()
     {
-        Debug.Log("LaunchButtonAction");
+        //Debug.Log("LaunchButtonAction");
         dice.Launch();
         //TODO
         //disableButton

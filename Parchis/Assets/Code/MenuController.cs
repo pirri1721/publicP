@@ -51,6 +51,8 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.LoadScene(3, LoadSceneMode.Additive);
+
         names = new String[size];
         chars = new Image[size];
         colors = new Color[size];

@@ -33,6 +33,11 @@ public class Dice : MonoBehaviour {
         diceInMovement = false;
 
         RaycastHit hitInfo;
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo))
+        {
+            Debug.Log(hitInfo.collider.name);
+        }
+
         if (Physics.Raycast(transform.position, transform.forward,out hitInfo) && hitInfo.collider.name=="RayWall")
         {
             Debug.Log("4");
