@@ -43,6 +43,9 @@ public class MenuController : MonoBehaviour
     public Image stagePortrait;
     private int stageIndex;
 
+    public AudioSource audio;
+
+    //players
     private int size = 4;
 
     // Start is called before the first frame update
@@ -266,6 +269,8 @@ public class MenuController : MonoBehaviour
         if(stageIndex == 0)
         {
             Debug.Log("Launch town");
+            DontDestroyOnLoad(audio.gameObject);
+
             SceneManager.sceneLoaded += Loadedscene;
             SceneManager.LoadScene(1);
 
