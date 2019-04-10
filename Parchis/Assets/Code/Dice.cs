@@ -82,7 +82,7 @@ public class Dice : MonoBehaviour {
         else
         {
             Debug.Log("Rerolling");
-            ResetDice();
+            //ResetDice();
             Launch();
         }
     }
@@ -114,6 +114,8 @@ public class Dice : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
 
         yield return new WaitUntil(() => rgdB.velocity.magnitude < 0.01f);
+
+        yield return new WaitForSeconds(0.85f);
         GetNumb();
     }
 

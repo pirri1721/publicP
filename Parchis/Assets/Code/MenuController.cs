@@ -43,7 +43,7 @@ public class MenuController : MonoBehaviour
     public Image stagePortrait;
     private int stageIndex;
 
-    public AudioSource audio;
+    public AudioSource sound;
 
     //players
     private int size = 4;
@@ -271,7 +271,7 @@ public class MenuController : MonoBehaviour
         if(stageIndex == 0)
         {
             Debug.Log("Launch town");
-            DontDestroyOnLoad(audio.gameObject);
+            DontDestroyOnLoad(sound.gameObject);
 
             SceneManager.sceneLoaded += Loadedscene;
             SceneManager.LoadScene(1);
