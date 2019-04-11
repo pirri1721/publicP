@@ -213,6 +213,7 @@ public class BoardManager : MonoBehaviour {
                 //TODO
                 //WIN
                 Debug.LogError("WIN!");
+                ui.UpdateWinText(currentPlayer.name, currentPlayer.color);
             }
         }
         if (slots[index].stairTile)
@@ -324,6 +325,7 @@ public class BoardManager : MonoBehaviour {
         {
             if (!diceUsed)
             {
+                ui.UpdateWinText(currentPlayer.name, currentPlayer.color);
                 //ThrowDice();
 
             }
@@ -502,7 +504,7 @@ public class BoardManager : MonoBehaviour {
 
     public void RepeatTurn()
     {
-        if (currentPlayer.first)
+        if (!currentPlayer.first)
         {
             repeatedTurns++;
             if (repeatedTurns > 2)
@@ -515,7 +517,7 @@ public class BoardManager : MonoBehaviour {
                     currentPlayer.JailToken(lastTokenUsed.tokenIndex);
                 }
 
-                killedToken = true;
+                killedToken = true;// mmmm ?
                 repeatTurn = false;
             }
             else
@@ -544,7 +546,7 @@ public class BoardManager : MonoBehaviour {
         //UI animation -- currentPlayer turn
         diceUsed = false;
 
-        ui.UpdateTurnText(currentPlayer.name, currentPlayer.color);
+        ui.UpdateTurnText(currentPlayer.name, currentPlayer.color, currentPlayer.first);
         if (!currentPlayer.ia)
         {
             EnableLaunchButton();
@@ -569,7 +571,8 @@ public class BoardManager : MonoBehaviour {
         //UI animation -- currentPlayer turn
         diceUsed = false;
 
-        ui.UpdateTurnText(currentPlayer.name, currentPlayer.color);
+        Debug.LogError("must be always false = " + currentPlayer.first);
+        ui.UpdateTurnText(currentPlayer.name, currentPlayer.color, currentPlayer.first);
         if (!currentPlayer.ia)
         {
             EnableLaunchButton();

@@ -318,4 +318,9 @@ public class MenuController : MonoBehaviour
         ModeSelectionView.SetActive(false);
         CharsSelectionView.SetActive(true);
     }
+
+    public void ExitApp()
+    {
+        Application.Quit();
+    }
 }

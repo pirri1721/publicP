@@ -82,6 +82,7 @@ public class Dice : MonoBehaviour {
         else
         {
             Debug.Log("Rerolling");
+            bM.ui.ActiveRerolling();
             //ResetDice();
             Launch();
         }
