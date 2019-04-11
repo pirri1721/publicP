@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class BoardManager : MonoBehaviour {
@@ -151,6 +152,9 @@ public class BoardManager : MonoBehaviour {
         }
 
         //MoveCharacters 
+
+        Button diceB = GameObject.Find("DiceButton").GetComponent<Button>();
+        diceB.onClick.AddListener(() => LaunchButtonAction());
 
         currentPlayer = players[0];
         currentPlayerIndex = 0;
